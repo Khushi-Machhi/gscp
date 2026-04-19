@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import hero1 from "@/assets/hero-1.jpg";
@@ -14,8 +15,8 @@ const slides = [
       "Premium PTFE Bellows, Lined Valves & Glass Equipment trusted by chemical, pharma and process industries across India.",
     cta1: "View Products",
     cta2: "Talk to an Expert",
-    target1: "products",
-    target2: "contact",
+    target1: "/products",
+    target2: "/contact",
   },
   {
     image: hero2,
@@ -25,8 +26,8 @@ const slides = [
       "Glass reactors, heat exchangers, sight glasses and stirring assemblies — engineered to industry standards with rigorous quality control.",
     cta1: "Explore Glassware",
     cta2: "Request a Quote",
-    target1: "products",
-    target2: "contact",
+    target1: "/products/laboratory-glassware",
+    target2: "/contact",
   },
   {
     image: hero3,
@@ -36,8 +37,8 @@ const slides = [
       "From bellows to lined flanges and fittings — our PTFE products withstand the harshest chemical environments without compromise.",
     cta1: "See PTFE Range",
     cta2: "Get in Touch",
-    target1: "products",
-    target2: "contact",
+    target1: "/products/ptfe-lined-fittings",
+    target2: "/contact",
   },
 ];
 
@@ -53,12 +54,8 @@ const Hero = () => {
     return () => clearInterval(t);
   }, [go]);
 
-  const scrollTo = (id: string) =>
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-
   return (
-    <section id="home" className="relative min-h-screen overflow-hidden bg-primary">
-      {/* Background slides — fade transition */}
+    <section id="home" className="relative min-h-[100svh] overflow-hidden bg-primary">
       {slides.map((s, i) => (
         <div
           key={i}
@@ -79,7 +76,6 @@ const Hero = () => {
         </div>
       ))}
 
-      {/* Overlay gradients */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/75 to-primary/30" />
       <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent" />
       <div className="absolute inset-0 grid-pattern opacity-30" />
@@ -88,11 +84,10 @@ const Hero = () => {
         style={{ background: "radial-gradient(circle, hsl(205 90% 55% / 0.5), transparent 70%)" }}
       />
 
-      {/* Content */}
-      <div className="relative container min-h-screen flex flex-col justify-center pt-28 pb-32 z-10">
+      <div className="relative container min-h-[100svh] flex flex-col justify-center pt-28 pb-32 z-10">
         <div className="max-w-3xl text-primary-foreground">
           <div key={`eyebrow-${active}`} className="animate-slide-right">
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-semibold tracking-wider uppercase">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-[10px] sm:text-xs font-semibold tracking-wider uppercase">
               <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
               {slides[active].eyebrow}
             </span>
@@ -100,7 +95,7 @@ const Hero = () => {
 
           <h1
             key={`title-${active}`}
-            className="mt-6 font-display font-bold text-4xl sm:text-5xl lg:text-7xl leading-[1.05] animate-fade-up"
+            className="mt-6 font-display font-bold text-3xl sm:text-5xl lg:text-7xl leading-[1.05] animate-fade-up"
           >
             {slides[active].title[0]}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary via-primary-glow to-accent">
@@ -111,7 +106,7 @@ const Hero = () => {
 
           <p
             key={`sub-${active}`}
-            className="mt-6 text-lg lg:text-xl text-primary-foreground/85 max-w-2xl leading-relaxed animate-fade-up"
+            className="mt-5 sm:mt-6 text-base sm:text-lg lg:text-xl text-primary-foreground/85 max-w-2xl leading-relaxed animate-fade-up"
             style={{ animationDelay: "100ms" }}
           >
             {slides[active].subtitle}
@@ -119,36 +114,36 @@ const Hero = () => {
 
           <div
             key={`cta-${active}`}
-            className="mt-10 flex flex-wrap gap-4 animate-fade-up"
+            className="mt-8 sm:mt-10 flex flex-wrap gap-3 sm:gap-4 animate-fade-up"
             style={{ animationDelay: "200ms" }}
           >
-            <Button variant="hero" size="lg" onClick={() => scrollTo(slides[active].target1)}>
-              {slides[active].cta1}
-              <ArrowRight className="ml-1 w-4 h-4" />
+            <Button asChild variant="hero" size="lg">
+              <Link to={slides[active].target1}>
+                {slides[active].cta1}
+                <ArrowRight className="ml-1 w-4 h-4" />
+              </Link>
             </Button>
-            <Button variant="glass" size="lg" onClick={() => scrollTo(slides[active].target2)}>
-              {slides[active].cta2}
+            <Button asChild variant="glass" size="lg">
+              <Link to={slides[active].target2}>{slides[active].cta2}</Link>
             </Button>
           </div>
 
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-3 gap-6 max-w-xl">
+          <div className="mt-12 sm:mt-16 grid grid-cols-3 gap-4 sm:gap-6 max-w-xl">
             {[
               ["8+", "Years"],
               ["500+", "Clients"],
               ["50+", "Products"],
             ].map(([n, l]) => (
-              <div key={l} className="border-l-2 border-secondary/60 pl-4">
-                <div className="font-display font-bold text-2xl lg:text-3xl">{n}</div>
-                <div className="text-xs uppercase tracking-wider text-primary-foreground/70">{l}</div>
+              <div key={l} className="border-l-2 border-secondary/60 pl-3 sm:pl-4">
+                <div className="font-display font-bold text-xl sm:text-2xl lg:text-3xl">{n}</div>
+                <div className="text-[10px] sm:text-xs uppercase tracking-wider text-primary-foreground/70">{l}</div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Controls */}
-      <div className="absolute bottom-8 inset-x-0 z-20">
+      <div className="absolute bottom-6 sm:bottom-8 inset-x-0 z-20">
         <div className="container flex items-center justify-between gap-6">
           <div className="flex gap-2">
             {slides.map((_, i) => (
@@ -165,15 +160,15 @@ const Hero = () => {
           <div className="flex gap-2">
             <button
               onClick={() => go(-1)}
-              aria-label="Previous"
-              className="w-11 h-11 rounded-full glass text-primary-foreground hover:bg-secondary hover:border-secondary transition-smooth flex items-center justify-center"
+              aria-label="Previous slide"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full glass text-primary-foreground hover:bg-secondary hover:border-secondary transition-smooth flex items-center justify-center"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => go(1)}
-              aria-label="Next"
-              className="w-11 h-11 rounded-full glass text-primary-foreground hover:bg-secondary hover:border-secondary transition-smooth flex items-center justify-center"
+              aria-label="Next slide"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full glass text-primary-foreground hover:bg-secondary hover:border-secondary transition-smooth flex items-center justify-center"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
