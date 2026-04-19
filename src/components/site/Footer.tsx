@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, ArrowUp } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-mark.png";
+import { categories } from "@/data/catalog";
 
 const Footer = () => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -13,18 +15,12 @@ const Footer = () => {
       />
 
       <div className="container relative pt-16 pb-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-10">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-10">
           {/* Brand */}
-          <div className="lg:col-span-4">
-            <div className="flex items-center gap-3">
-              <img src={logo} alt="Logo" className="h-12 w-12 object-contain" width={48} height={48} />
-              <div>
-                <div className="font-display font-bold text-lg leading-tight">GUJARAT SCIENTIFIC</div>
-                <div className="text-[10px] tracking-[0.25em] text-secondary font-semibold uppercase">
-                  And Polymer
-                </div>
-              </div>
-            </div>
+          <div className="sm:col-span-2 lg:col-span-4">
+            <Link to="/" className="inline-flex items-center" aria-label="Home">
+              <img src={logo} alt="Gujarat Scientific and Polymer" className="h-16 w-16 object-contain" width={64} height={64} />
+            </Link>
             <p className="mt-5 text-primary-foreground/70 text-sm leading-relaxed max-w-sm">
               A trusted manufacturer and supplier of PTFE products, lined valves, glass equipment and industrial
               hardware — engineered for the world's most demanding processes.
@@ -34,7 +30,7 @@ const Footer = () => {
                 <a
                   key={i}
                   href="#"
-                  aria-label="Social"
+                  aria-label="Social link"
                   className="w-10 h-10 rounded-lg glass flex items-center justify-center hover:bg-secondary hover:border-secondary transition-smooth"
                 >
                   <Icon className="w-4 h-4" />
@@ -47,9 +43,15 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className="font-display font-semibold text-base mb-4">Company</div>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
-              {["Home", "Company Profile", "Our Products", "Why Us", "Contact Us"].map((l) => (
-                <li key={l}>
-                  <a href="#" className="hover:text-secondary transition-quick">{l}</a>
+              {[
+                ["/", "Home"],
+                ["/company", "Company Profile"],
+                ["/products", "Our Products"],
+                ["/why-us", "Why Us"],
+                ["/contact", "Contact Us"],
+              ].map(([to, l]) => (
+                <li key={to}>
+                  <Link to={to} className="hover:text-secondary transition-quick">{l}</Link>
                 </li>
               ))}
             </ul>
@@ -59,16 +61,11 @@ const Footer = () => {
           <div className="lg:col-span-3">
             <div className="font-display font-semibold text-base mb-4">Products</div>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
-              {[
-                "Bellows Expansion Joints",
-                "Lined Valves",
-                "Laboratory Glassware",
-                "Glass Heat Exchangers",
-                "Industrial Sight Glass",
-                "PTFE Lined Fittings",
-              ].map((l) => (
-                <li key={l}>
-                  <a href="#products" className="hover:text-secondary transition-quick">{l}</a>
+              {categories.slice(0, 6).map((c) => (
+                <li key={c.slug}>
+                  <Link to={`/products/${c.slug}`} className="hover:text-secondary transition-quick">
+                    {c.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -84,23 +81,27 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 mt-0.5 text-secondary shrink-0" />
-                <span>+91 — Call for quotation</span>
+                <a href="tel:+91" className="hover:text-secondary transition-quick">
+                  +91 — Call for quotation
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 mt-0.5 text-secondary shrink-0" />
-                <span>info@gujaratscientific.com</span>
+                <a href="mailto:info@gujaratscientific.com" className="hover:text-secondary transition-quick break-all">
+                  info@gujaratscientific.com
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-primary-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-primary-foreground/60">
+        <div className="mt-12 pt-6 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-primary-foreground/60 text-center sm:text-left">
             © {new Date().getFullYear()} Gujarat Scientific And Polymer. All Rights Reserved.
           </p>
           <div className="flex items-center gap-4">
-            <a href="#" className="text-xs text-primary-foreground/60 hover:text-secondary">Terms of Use</a>
-            <a href="#" className="text-xs text-primary-foreground/60 hover:text-secondary">Privacy</a>
+            <Link to="/contact" className="text-xs text-primary-foreground/60 hover:text-secondary">Terms</Link>
+            <Link to="/contact" className="text-xs text-primary-foreground/60 hover:text-secondary">Privacy</Link>
             <button
               onClick={scrollTop}
               aria-label="Back to top"

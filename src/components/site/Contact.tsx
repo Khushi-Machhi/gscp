@@ -27,7 +27,7 @@ const Contact = () => {
     setForm({ ...form, [k]: e.target.value });
 
   return (
-    <section id="contact" className="py-24 bg-gradient-soft relative overflow-hidden">
+    <section id="contact" className="py-16 lg:py-24 bg-gradient-soft relative overflow-hidden">
       <div
         className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full blur-3xl opacity-40"
         style={{ background: "radial-gradient(circle, hsl(205 90% 70% / 0.4), transparent 70%)" }}

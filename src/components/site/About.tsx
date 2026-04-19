@@ -17,7 +17,7 @@ const stats = [
 
 const About = () => {
   return (
-    <section id="about" className="py-24 bg-background relative overflow-hidden">
+    <section id="about" className="py-20 lg:py-24 bg-background relative overflow-hidden">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image */}
@@ -35,9 +35,9 @@ const About = () => {
             </div>
 
             {/* Floating card */}
-            <div className="absolute -bottom-8 -right-4 lg:-right-8 bg-card rounded-2xl p-6 shadow-elegant border border-border max-w-[260px] animate-float">
-              <div className="text-5xl font-display font-bold text-gradient">2016</div>
-              <div className="mt-1 text-sm text-muted-foreground">
+            <div className="absolute -bottom-6 right-2 sm:-bottom-8 sm:-right-4 lg:-right-8 bg-card rounded-2xl p-4 sm:p-6 shadow-elegant border border-border max-w-[220px] sm:max-w-[260px] animate-float">
+              <div className="text-4xl sm:text-5xl font-display font-bold text-gradient">2016</div>
+              <div className="mt-1 text-xs sm:text-sm text-muted-foreground">
                 Established with a vision for industrial excellence in PTFE & polymer products.
               </div>
             </div>
