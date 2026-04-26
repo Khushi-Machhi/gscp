@@ -81,14 +81,14 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 mt-0.5 text-secondary shrink-0" />
-                <a href="tel:+91" className="hover:text-secondary transition-quick">
-                  +91 — Call for quotation
+                <a href="tel:+91 9824202661" className="hover:text-secondary transition-quick">
+                  +91 9824202661
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 mt-0.5 text-secondary shrink-0" />
-                <a href="mailto:info@gujaratscientific.com" className="hover:text-secondary transition-quick break-all">
-                  info@gujaratscientific.com
+                <a href="mailto:info@gujaratscientificandpolymer.com" className="hover:text-secondary transition-quick break-all">
+                  info@gujaratscientificandpolymer.com
                 </a>
               </li>
             </ul>
