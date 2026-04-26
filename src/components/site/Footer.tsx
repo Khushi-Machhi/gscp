@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, ArrowUp } from "lucide-react";
-import logo from "@/assets/logo-mark.png";
+import logo from "@/assets/gscp-logo.png";
 import { categories } from "@/data/catalog";
 
 const Footer = () => {

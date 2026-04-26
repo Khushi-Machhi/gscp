@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo-mark.png";
+import logo from "@/assets/gscp-logo.png";
 import { categories } from "@/data/catalog";
 
 const navItems = [

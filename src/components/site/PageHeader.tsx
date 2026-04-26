@@ -1,4 +1,4 @@
-import logo from "@/assets/logo-mark.png";
+import logo from "@/assets/gscp-logo.png";
 
 type Props = { eyebrow: string; title: string; subtitle?: string };
 
