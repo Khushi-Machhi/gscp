@@ -49,9 +49,9 @@ const Navbar = () => {
           <img
             src={logo}
             alt="Gujarat Scientific and Polymer logo"
-            className="h-16 w-16 sm:h-20 sm:w-20 object-contain transition-smooth group-hover:scale-105 drop-shadow-sm"
-            width={80}
-            height={80}
+            className="h-48 w-48 sm:h-60 sm:w-60 object-contain transition-smooth group-hover:scale-105 drop-shadow-sm"
+            width={240}
+            height={240}
           />
         </Link>
 
