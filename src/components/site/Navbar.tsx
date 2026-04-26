@@ -126,7 +126,7 @@ const Navbar = () => {
 
         <div className="hidden md:flex items-center gap-3">
           <a
-            href="tel:+91"
+            href="tel:+91 9824202661"
             className={`hidden xl:flex items-center gap-2 text-sm transition-quick ${
               transparent ? "text-primary-foreground/90 hover:text-primary-foreground" : "text-foreground/70 hover:text-primary"
             }`}

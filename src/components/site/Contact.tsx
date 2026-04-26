@@ -51,8 +51,8 @@ const Contact = () => {
             <div className="mt-8 space-y-4">
               {[
                 { icon: MapPin, title: "Our Location", text: "Gujarat, India" },
-                { icon: Phone, title: "Phone", text: "+91 — Call for quotation" },
-                { icon: Mail, title: "Email", text: "info@gujaratscientific.com" },
+                { icon: Phone, title: "Phone", text: "+91 9824202661" },
+                { icon: Mail, title: "Email", text: "info@gujaratscientificandpolymer.com" },
               ].map(({ icon: Icon, title, text }) => (
                 <div key={title} className="flex items-start gap-4 p-4 bg-card rounded-xl border border-border shadow-soft">
                   <div className="w-11 h-11 rounded-xl bg-gradient-brand text-primary-foreground flex items-center justify-center shrink-0">
