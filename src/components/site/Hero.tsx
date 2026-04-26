@@ -55,18 +55,18 @@ const Hero = () => {
   }, [go]);
 
   return (
-    <section id="home" className="relative min-h-[100svh] overflow-hidden bg-primary">
+    <section id="home" className="relative h-[100svh] overflow-hidden bg-primary">
       {slides.map((s, i) => (
         <div
           key={i}
-          className={`absolute inset-0 transition-opacity duration-[1400ms] ${
+          className={`absolute inset-0 h-full transition-opacity duration-[1400ms] ${
             i === active ? "opacity-100" : "opacity-0"
           }`}
         >
           <img
             src={s.image}
             alt=""
-            className={`w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${
+            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-[8000ms] ease-out ${
               i === active ? "scale-110" : "scale-100"
             }`}
             width={1920}
