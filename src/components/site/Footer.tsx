@@ -19,7 +19,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-4">
             <Link to="/" className="inline-flex items-center" aria-label="Home">
-              <img src={logo} alt="Gujarat Scientific and Polymer" className="h-60 w-60 object-contain" width={240} height={240} />
+              <img src={logo} alt="Gujarat Scientific and Polymer" className="h-32 w-auto object-contain" width={128} height={128} />
             </Link>
             <p className="mt-5 text-primary-foreground/70 text-sm leading-relaxed max-w-sm">
               A trusted manufacturer and supplier of PTFE products, lined valves, glass equipment and industrial

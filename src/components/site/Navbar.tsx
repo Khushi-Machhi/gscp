@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/gscp-logo.png";
+import logoColored from "@/assets/gscp-logo.png";
+import logoWhite from "@/assets/logo-mark.png";
 import { categories } from "@/data/catalog";
 
 const navItems = [
@@ -47,11 +48,11 @@ const Navbar = () => {
       <div className="container flex items-center justify-between h-20">
         <Link to="/" className="flex items-center group" aria-label="Home">
           <img
-            src={logo}
+            src={transparent ? logoWhite : logoColored}
             alt="Gujarat Scientific and Polymer logo"
-            className="h-48 w-48 sm:h-60 sm:w-60 object-contain transition-smooth group-hover:scale-105 drop-shadow-sm"
-            width={240}
-            height={240}
+            className="h-16 w-auto object-contain transition-smooth group-hover:scale-105 drop-shadow-sm"
+            width={128}
+            height={64}
           />
         </Link>
 
