@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, ArrowUp } from "lucide-react";
-import logo from "@/assets/gscp-logo.png";
+import logo from "@/assets/gscp-white-logo.png";
 import { categories } from "@/data/catalog";
 
 const Footer = () => {
@@ -19,7 +19,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-4">
             <Link to="/" className="inline-flex items-center" aria-label="Home">
-              <img src={logo} alt="Gujarat Scientific and Polymer" className="h-32 w-auto object-contain" width={128} height={128} />
+              <img src={logo} alt="Gujarat Scientific and Polymer" className="h-16 w-auto object-contain" width={128} height={64} />
             </Link>
             <p className="mt-5 text-primary-foreground/70 text-sm leading-relaxed max-w-sm">
               A trusted manufacturer and supplier of PTFE products, lined valves, glass equipment and industrial

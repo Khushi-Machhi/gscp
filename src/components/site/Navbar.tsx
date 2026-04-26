@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoColored from "@/assets/gscp-logo.png";
-import logoWhite from "@/assets/logo-mark.png";
+import logoWhite from "@/assets/gscp-white-logo.png";
 import { categories } from "@/data/catalog";
 
 const navItems = [
