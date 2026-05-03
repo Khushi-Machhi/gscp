@@ -61,7 +61,7 @@ const ProductDetail = () => {
                 {product.tag}
               </span>
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            {/* <div className="grid grid-cols-3 gap-3">
               {[product.img, category.image, product.img].map((src, i) => (
                 <div
                   key={i}
@@ -70,7 +70,7 @@ const ProductDetail = () => {
                   <img src={src} alt="" className="w-full h-full object-cover opacity-90" />
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Summary */}
