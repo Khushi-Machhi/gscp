@@ -24,16 +24,36 @@ const Contact = () => {
       // Formspree form ID for info@gujaratscientificandpolymer.com
       const formspreeId = 'mqenedqz';
 
+      // Create a formatted message for the email
+      const formattedMessage = `
+NEW INQUIRY FROM CONTACT FORM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PERSONAL DETAILS
+Name: ${form.name}
+Email: ${form.email}
+${form.phone ? `Phone: ${form.phone}` : ''}
+
+COMPANY DETAILS
+${form.company ? `Company: ${form.company}` : 'Company: Not provided'}
+${form.city ? `City/State: ${form.city}` : 'City/State: Not provided'}
+
+REQUIREMENT
+${form.requirement}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This inquiry was submitted from: gujaratscientificandpolymer.com
+Please reply to: ${form.email}
+      `.trim();
+
       const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          _subject: `New Inquiry from ${form.name} - ${form.company || 'Individual'}`,
           name: form.name,
           email: form.email,
-          company: form.company || '',
-          phone: form.phone || '',
-          city: form.city || '',
-          requirement: form.requirement,
+          message: formattedMessage,
         }),
       });
 
