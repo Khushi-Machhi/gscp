@@ -115,7 +115,7 @@ const ProductDetail = () => {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg">
-                <a href="tel:+91 9824202661">
+                <a href="tel:+91 98242 07661">
                   <Phone className="w-4 h-4" /> Request Callback
                 </a>
               </Button>
@@ -170,8 +170,8 @@ const ProductDetail = () => {
               </Button>
               <div className="mt-6 pt-6 border-t border-primary-foreground/20 space-y-1.5 text-sm">
                 <div className="font-semibold">C-7/2, Road No. 2, Ajwa<br/>Road, Sardar Estate,<br/>Vadodara, Gujarat 390019</div>
-                <a href="tel:+91 9824202661" className="block opacity-80 hover:opacity-100">
-                  +91 9824202661
+                <a href="tel:+91 98242 07661" className="block opacity-80 hover:opacity-100">
+                  +91 98242 07661
                 </a>
               </div>
             </aside>

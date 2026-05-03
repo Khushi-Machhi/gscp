@@ -31,7 +31,7 @@ const ContactCTA = () => (
               </Link>
             </Button>
             <Button asChild variant="glass" size="lg">
-              <a href="tel:+91 9824202661">
+              <a href="tel:+91 98242 07661">
                 <Phone className="w-4 h-4" /> Call Us
               </a>
             </Button>
