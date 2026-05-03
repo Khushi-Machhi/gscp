@@ -13,14 +13,40 @@ const Contact = () => {
     requirement: "",
   });
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.email || !form.requirement) {
       toast.error("Please fill in all required fields.");
       return;
     }
-    toast.success("Inquiry sent! We'll reply shortly with the best price.");
-    setForm({ name: "", company: "", phone: "", email: "", city: "", requirement: "" });
+
+    try {
+      // Formspree form ID for info@gujaratscientificandpolymer.com
+      const formspreeId = 'mqenedqz';
+
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company || '',
+          phone: form.phone || '',
+          city: form.city || '',
+          requirement: form.requirement,
+        }),
+      });
+
+      if (response.ok) {
+        toast.success("Inquiry sent! We'll reply shortly with the best price.");
+        setForm({ name: "", company: "", phone: "", email: "", city: "", requirement: "" });
+      } else {
+        toast.error("Failed to send inquiry. Please try again or contact us directly.");
+      }
+    } catch (error) {
+      console.error('Form submission failed:', error);
+      toast.error("Failed to send inquiry. Please try again or contact us directly.");
+    }
   };
 
   const update = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
