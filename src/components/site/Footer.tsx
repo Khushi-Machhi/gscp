@@ -77,7 +77,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm text-primary-foreground/75">
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 mt-0.5 text-secondary shrink-0" />
-                <span>Gujarat, India</span>
+                <span>C-7/2, Road No. 2, Ajwa Road,<br/>Sardar Estate, Vadodara,<br/>Gujarat 390019</span>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 mt-0.5 text-secondary shrink-0" />

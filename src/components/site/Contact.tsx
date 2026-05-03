@@ -96,7 +96,7 @@ Please reply to: ${form.email}
 
             <div className="mt-8 space-y-4">
               {[
-                { icon: MapPin, title: "Our Location", text: "Gujarat, India" },
+                { icon: MapPin, title: "Our Location", text: "C-7/2, Road No. 2, Ajwa Road, Sardar Estate, Vadodara, Gujarat 390019" },
                 { icon: Phone, title: "Phone", text: "+91 9824202661" },
                 { icon: Mail, title: "Email", text: "info@gujaratscientificandpolymer.com" },
               ].map(({ icon: Icon, title, text }) => (

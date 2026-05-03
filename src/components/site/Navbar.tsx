@@ -9,7 +9,7 @@ import { categories } from "@/data/catalog";
 const navItems = [
   { to: "/", label: "Home" },
   { to: "/company", label: "Company" },
-  { to: "/products", label: "Products", hasMenu: true },
+  { to: "/products", label: "Products", hasMenu: false },
   { to: "/why-us", label: "Why Us" },
   { to: "/contact", label: "Contact" },
 ];

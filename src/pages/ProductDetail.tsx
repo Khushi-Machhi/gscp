@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { ChevronRight, Send, Phone, CheckCircle2, ShieldCheck, Truck, Award, Factory } from "lucide-react";
+import { ChevronRight, Send, Phone, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Accordion,
@@ -121,23 +121,7 @@ const ProductDetail = () => {
               </Button>
             </div>
 
-            {/* Trust strip */}
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {[
-                { icon: ShieldCheck, label: "Quality Tested" },
-                { icon: Award, label: "ISO Standards" },
-                { icon: Factory, label: "Made in India" },
-                { icon: Truck, label: "Worldwide Shipping" },
-              ].map((b) => (
-                <div
-                  key={b.label}
-                  className="flex flex-col items-center text-center gap-1.5 p-3 rounded-xl border border-border bg-card"
-                >
-                  <b.icon className="w-5 h-5 text-secondary" />
-                  <span className="text-[11px] font-semibold text-primary">{b.label}</span>
-                </div>
-              ))}
-            </div>
+
           </div>
         </div>
       </section>
@@ -185,9 +169,9 @@ const ProductDetail = () => {
                 <Link to="/contact">Talk to an expert</Link>
               </Button>
               <div className="mt-6 pt-6 border-t border-primary-foreground/20 space-y-1.5 text-sm">
-                <div className="font-semibold">Vadodara, Gujarat — India</div>
-                <a href="tel:+919998447474" className="block opacity-80 hover:opacity-100">
-                  +91 99984 47474
+                <div className="font-semibold">C-7/2, Road No. 2, Ajwa<br/>Road, Sardar Estate,<br/>Vadodara, Gujarat 390019</div>
+                <a href="tel:+91 9824202661" className="block opacity-80 hover:opacity-100">
+                  +91 9824202661
                 </a>
               </div>
             </aside>

@@ -1,148 +1,21 @@
-// export type Category = {
-//   slug: string;
-//   name: string;
-//   short: string;
-//   description: string;
-//   image: string;
-//   products: { name: string; tag: string; img: string }[];
-// };
+// ---------------------------------------------------------------------------
+// Image resolution
+// ---------------------------------------------------------------------------
+// Every product image lives at:  /assets/products/{product-slug}.jpg
+// Every category image lives at: /assets/products/category-{category-slug}.jpg
+//
+// Drop your images into /public/assets/products/ with the matching filename.
+// Use getProductImage() / getCategoryImage() in your components — they accept
+// an optional fallback so the UI never breaks while you're adding images.
+// ---------------------------------------------------------------------------
 
-// import valve from "@/assets/p-valve.jpg";
-// import bellow from "@/assets/p-bellow.jpg";
-// import rods from "@/assets/p-rods.jpg";
-// import reactor from "@/assets/p-reactor.jpg";
-// import sight from "@/assets/p-sight.jpg";
-// import elbow from "@/assets/p-elbow.jpg";
-// import heat from "@/assets/p-heat.jpg";
-// import flange from "@/assets/p-flange.jpg";
+/** Returns the expected image path for a product slug. */
+export const getProductImage = (slug: string, fallback = "/assets/products/placeholder.jpg"): string =>
+  `/assets/products/${slug}.jpg`;
 
-// export const categories: Category[] = [
-//   {
-//     slug: "bellows-expansion-joints",
-//     name: "Bellows Expansion Joints",
-//     short: "12+ variants",
-//     description:
-//       "High-pressure PTFE and PTFE-lined bellows engineered for thermal expansion, vibration absorption and chemical resistance.",
-//     image: bellow,
-//     products: [
-//       { name: "PTFE High Pressure Bellow", tag: "Bellows", img: bellow },
-//       { name: "PTFE Machined High Pressure Bellow", tag: "Bellows", img: bellow },
-//       { name: "300mm PTFE Bellow", tag: "Bellows", img: bellow },
-//       { name: "Industrial Bellows", tag: "Industrial", img: bellow },
-//     ],
-//   },
-//   {
-//     slug: "lined-valves",
-//     name: "Lined Valves",
-//     short: "PTFE • PFA",
-//     description:
-//       "PTFE-lined valves built to handle aggressive media — corrosion-proof, leak-tight, and designed for long service life.",
-//     image: valve,
-//     products: [
-//       { name: "Bakelite Bonet And PTFE Valve", tag: "Valves", img: valve },
-//       { name: "PTFE Lined Plug Valve", tag: "Valves", img: valve },
-//       { name: "PTFE Lined Butterfly Gate Valve", tag: "Valves", img: valve },
-//       { name: "Industrial Valves", tag: "Industrial", img: valve },
-//     ],
-//   },
-//   {
-//     slug: "laboratory-glassware",
-//     name: "Laboratory Glassware",
-//     short: "Premium grade",
-//     description:
-//       "Premium borosilicate laboratory and industrial glassware for chemical, pharma and research applications.",
-//     image: reactor,
-//     products: [
-//       { name: "50L Jacketed Glass Reactor", tag: "Glass", img: reactor },
-//       { name: "Glass Stirring Assembly", tag: "Glass", img: reactor },
-//       { name: "Industrial & Laboratory Glassware", tag: "Glass", img: reactor },
-//       { name: "PTFE Industrial Stirrer", tag: "Stirrer", img: rods },
-//     ],
-//   },
-//   {
-//     slug: "glass-heat-exchangers",
-//     name: "Glass Heat Exchangers",
-//     short: "Shell & Tube",
-//     description:
-//       "Glass heat exchangers and shell-and-tube assemblies for efficient heat transfer in corrosive environments.",
-//     image: heat,
-//     products: [
-//       { name: "Glass Heat Exchanger", tag: "Heat", img: heat },
-//       { name: "Glass Body Shell And Tube", tag: "Shell & Tube", img: heat },
-//       { name: "Heat Exchanger", tag: "Heat", img: heat },
-//     ],
-//   },
-//   {
-//     slug: "industrial-sight-glass",
-//     name: "Industrial Sight Glass",
-//     short: "Single & Double window",
-//     description:
-//       "Industrial sight glasses for visual monitoring of process flows under pressure and temperature.",
-//     image: sight,
-//     products: [
-//       { name: "Double Window Sight Glass", tag: "Glass", img: sight },
-//       { name: "Industrial Sight Glass", tag: "Glass", img: sight },
-//     ],
-//   },
-//   {
-//     slug: "ptfe-lined-fittings",
-//     name: "PTFE Lined Fittings",
-//     short: "Tees • Elbows • Flanges",
-//     description:
-//       "Complete range of PTFE-lined pipe fittings — tees, elbows, reducing flanges, spacers and feed pipes.",
-//     image: elbow,
-//     products: [
-//       { name: "PTFE Lined Equal Tees", tag: "Fittings", img: elbow },
-//       { name: "45° MS PTFE Lined Elbow", tag: "Fittings", img: elbow },
-//       { name: "MS PTFE Lined Header", tag: "Lined", img: elbow },
-//       { name: "PTFE Feed Pipes", tag: "Pipes", img: elbow },
-//       { name: "PTFE Lined Reducing Flange", tag: "Flanges", img: flange },
-//       { name: "SS Flanges", tag: "Flanges", img: flange },
-//       { name: "PFA / FEP Lined Spacer", tag: "Spacer", img: flange },
-//       { name: "PTFE Lap Seal", tag: "Sealing", img: valve },
-//     ],
-//   },
-//   {
-//     slug: "ptfe-products",
-//     name: "PTFE Products",
-//     short: "Rods • Sheets • Custom",
-//     description:
-//       "Pure PTFE products including rods, machined parts and custom polymer components built to spec.",
-//     image: rods,
-//     products: [
-//       { name: "Teflon Rods", tag: "PTFE", img: rods },
-//       { name: "PTFE Product", tag: "PTFE", img: rods },
-//       { name: "SS PTFE Pbt Blade Stirrer", tag: "Stirrer", img: rods },
-//     ],
-//   },
-//   {
-//     slug: "food-product-kettles",
-//     name: "Food Product Kettles",
-//     short: "Steam jacketed",
-//     description:
-//       "Steam jacketed kettles for food processing — durable stainless steel construction with consistent heating.",
-//     image: heat,
-//     products: [
-//       { name: "Steam Jacketed Kettle 20 Litre", tag: "Food", img: heat },
-//     ],
-//   },
-// ];
-
-// export const allProducts = categories.flatMap((c) =>
-//   c.products.map((p) => ({ ...p, category: c.name, categorySlug: c.slug })),
-// );
-
-// export const findCategory = (slug: string) => categories.find((c) => c.slug === slug);
-
-
-import valve from "@/assets/p-valve.jpg";
-import bellow from "@/assets/p-bellow.jpg";
-import rods from "@/assets/p-rods.jpg";
-import reactor from "@/assets/p-reactor.jpg";
-import sight from "@/assets/p-sight.jpg";
-import elbow from "@/assets/p-elbow.jpg";
-import heat from "@/assets/p-heat.jpg";
-import flange from "@/assets/p-flange.jpg";
+/** Returns the expected image path for a category slug. */
+export const getCategoryImage = (slug: string, fallback = "/assets/products/placeholder.jpg"): string =>
+  `/assets/products/category-${slug}.jpg`;
 
 export type SpecRow = { label: string; value: string };
 export type FAQ = { q: string; a: string };
@@ -186,10 +59,8 @@ const tradeDefault: SpecRow[] = [
   { label: "Main Domestic Market", value: "All India" },
 ];
 
-// Helper to build a product with sensible defaults derived from category presets
 type Preset = {
   tag: string;
-  img: string;
   baseSpecs: SpecRow[];
   highlights: { title: string; body: string }[];
   faqs: FAQ[];
@@ -221,7 +92,6 @@ const makeFaqs = (name: string): FAQ[] => [
 const presets: Record<string, Preset> = {
   bellows: {
     tag: "Bellows",
-    img: bellow,
     baseSpecs: [
       { label: "Media", value: "Corrosive chemicals, acids, air, water, gases" },
       { label: "Surface Treatment", value: "Polish" },
@@ -261,7 +131,6 @@ const presets: Record<string, Preset> = {
   },
   valves: {
     tag: "Valves",
-    img: valve,
     baseSpecs: [
       { label: "Material", value: "MS / SS 304 / SS 316 with PTFE / FEP / PFA lining" },
       { label: "End Connection", value: "Flanged ANSI 150# / DIN PN10 / PN16" },
@@ -296,7 +165,6 @@ const presets: Record<string, Preset> = {
   },
   glassware: {
     tag: "Glassware",
-    img: reactor,
     baseSpecs: [
       { label: "Material", value: "Borosilicate Glass 3.3" },
       { label: "Capacity", value: "5 L to 200 L" },
@@ -327,9 +195,101 @@ const presets: Record<string, Preset> = {
     ],
     faqs: [],
   },
+  evaporation: {
+    tag: "Evaporation",
+    baseSpecs: [
+      { label: "Material", value: "Borosilicate Glass 3.3 / SS 316" },
+      { label: "Evaporation Capacity", value: "1 L/hr to 200 L/hr" },
+      { label: "Working Pressure", value: "Full vacuum to atmospheric" },
+      { label: "Working Temperature", value: "Up to 200°C" },
+      { label: "Heating", value: "Hot water / Steam / Thermic fluid" },
+      { label: "Condenser", value: "Glass shell & tube / Coil" },
+      { label: "Drive", value: "TEFC motor with gearbox" },
+      { label: "Application", value: "Concentration, solvent recovery, distillation" },
+      { label: "Compliance", value: "GMP / Non-GMP available" },
+    ],
+    highlights: [
+      {
+        title: "Efficient Solvent Recovery",
+        body:
+          "High evaporation rates with minimal heat exposure — ideal for heat-sensitive products in pharma, fine chemicals and food industries.",
+      },
+      {
+        title: "Full Process Visibility",
+        body:
+          "Borosilicate glass construction enables real-time monitoring of the evaporation process without interruption.",
+      },
+      {
+        title: "Compact Modular Design",
+        body:
+          "Skid-mounted units with standardised DN couplings allow easy integration into existing process lines and simple maintenance.",
+      },
+    ],
+    faqs: [],
+  },
+  engineeredGlass: {
+    tag: "Engineered Glass",
+    baseSpecs: [
+      { label: "Material", value: "Borosilicate Glass 3.3" },
+      { label: "Working Temperature", value: "-20°C to +200°C" },
+      { label: "Working Pressure", value: "Full vacuum to +0.5 Bar" },
+      { label: "Connection", value: "DN coupling / Flanged" },
+      { label: "Application", value: "Filtration, separation, extraction, fermentation, chromatography" },
+      { label: "Compliance", value: "GMP / Non-GMP, FLP / Non-FLP available" },
+      { label: "Stand", value: "MS powder-coated / SS structure" },
+    ],
+    highlights: [
+      {
+        title: "Inert & Contamination-Free",
+        body:
+          "Borosilicate glass wetted surfaces ensure zero contamination of process media — critical for pharmaceutical and food-grade applications.",
+      },
+      {
+        title: "Validated for GMP Use",
+        body:
+          "Available in GMP and non-GMP configurations with documentation support for FDA-regulated production environments.",
+      },
+      {
+        title: "Application Flexibility",
+        body:
+          "From Nutsche filtration to chromatography and liquid-liquid extraction — one glass system platform covers multiple unit operations.",
+      },
+    ],
+    faqs: [],
+  },
+  glassColumns: {
+    tag: "Glass Columns",
+    baseSpecs: [
+      { label: "Material", value: "Borosilicate Glass 3.3" },
+      { label: "Diameter Range", value: "2\" (50 mm) to 24\" (600 mm)" },
+      { label: "Working Temperature", value: "Up to 200°C" },
+      { label: "Working Pressure", value: "Full vacuum to +0.5 Bar" },
+      { label: "Packing Type", value: "Structured / Random packings" },
+      { label: "Internals", value: "Packing supports, retainers, liquid distributors, re-distributors, feed sections" },
+      { label: "Connection", value: "DN coupling / Flanged" },
+      { label: "Application", value: "Distillation, absorption, stripping, scrubbing" },
+    ],
+    highlights: [
+      {
+        title: "Wide Diameter Range",
+        body:
+          "Available from 2\" pilot-scale to 24\" production-scale — enabling seamless scale-up of distillation and absorption processes.",
+      },
+      {
+        title: "Complete Column Internals",
+        body:
+          "Structured and random packings, liquid distributors, re-distributors and feed sections supplied to maximise separation efficiency.",
+      },
+      {
+        title: "Corrosion-Proof Operation",
+        body:
+          "Borosilicate glass columns resist HCl, H₂SO₄, HNO₃ and most organic solvents — no corrosion, no product contamination.",
+      },
+    ],
+    faqs: [],
+  },
   heatExchanger: {
     tag: "Heat Exchanger",
-    img: heat,
     baseSpecs: [
       { label: "Type", value: "Shell & Tube / Coil / Block" },
       { label: "Heat Transfer Area", value: "0.5 m² to 50 m²" },
@@ -360,9 +320,39 @@ const presets: Record<string, Preset> = {
     ],
     faqs: [],
   },
+  processEngineering: {
+    tag: "Process Engineering",
+    baseSpecs: [
+      { label: "Material", value: "Borosilicate Glass 3.3 / PP / FRP / SS" },
+      { label: "Design", value: "Custom engineered to process requirements" },
+      { label: "Capacity", value: "Pilot to full production scale" },
+      { label: "Working Pressure", value: "Vacuum to +3 Bar" },
+      { label: "Working Temperature", value: "Up to 200°C" },
+      { label: "Application", value: "HCl generation, gas absorption, acid concentration/dilution, bromine recovery" },
+      { label: "Compliance", value: "As per IS / DIN / ASME / customer specs" },
+      { label: "Supply Scope", value: "Engineering, fabrication, supply, erection & commissioning" },
+    ],
+    highlights: [
+      {
+        title: "Turnkey Process Packages",
+        body:
+          "Complete engineering packages from design through commissioning — single-source accountability for complex glass-lined process systems.",
+      },
+      {
+        title: "Proven Process Routes",
+        body:
+          "HCl generation via boiling, sulphuric acid and calcium chloride routes; sulphuric acid dilution and concentration; bromine recovery — all with operating references.",
+      },
+      {
+        title: "Corrosion-Proof Construction",
+        body:
+          "Borosilicate glass, PP and FRP construction ensures long service life in highly corrosive acid and halogen environments.",
+      },
+    ],
+    faqs: [],
+  },
   sightGlass: {
     tag: "Sight Glass",
-    img: sight,
     baseSpecs: [
       { label: "Type", value: "Single window / Double window" },
       { label: "Body Material", value: "MS / SS 304 / SS 316" },
@@ -392,7 +382,6 @@ const presets: Record<string, Preset> = {
   },
   fittings: {
     tag: "Lined Fitting",
-    img: elbow,
     baseSpecs: [
       { label: "Lining", value: "PTFE / PFA / FEP" },
       { label: "Body Material", value: "Carbon Steel / SS 304 / SS 316" },
@@ -425,13 +414,12 @@ const presets: Record<string, Preset> = {
   },
   flanges: {
     tag: "Flanges",
-    img: flange,
     baseSpecs: [
       { label: "Material", value: "MS / SS 304 / SS 316 with PTFE / PFA lining" },
       { label: "Standard", value: "ANSI B16.5 / DIN 2527 / JIS" },
       { label: "Size Range", value: "15 mm to 300 mm" },
       { label: "Pressure Rating", value: "150# / PN10 / PN16" },
-      { label: "Type", value: "Slip-on / Weld-neck / Reducing / Blind" },
+      { label: "Type", value: "Slip-on / Weld-neck / Reducing / Blind / Spectacle" },
       { label: "Temperature", value: "Up to 200°C" },
       { label: "Application", value: "Chemical, pharma, fertilizer, refinery" },
     ],
@@ -453,7 +441,6 @@ const presets: Record<string, Preset> = {
   },
   ptfe: {
     tag: "PTFE",
-    img: rods,
     baseSpecs: [
       { label: "Material", value: "Virgin / Filled PTFE" },
       { label: "Color", value: "White (virgin) / Black, Brown (filled)" },
@@ -481,9 +468,71 @@ const presets: Record<string, Preset> = {
     ],
     faqs: [],
   },
+  strainer: {
+    tag: "Strainer",
+    baseSpecs: [
+      { label: "Type", value: "Y-Type / Basket Type" },
+      { label: "Lining", value: "PTFE / PFA / FEP" },
+      { label: "Body Material", value: "Carbon Steel / SS 304 / SS 316" },
+      { label: "Size Range", value: "25 mm to 300 mm" },
+      { label: "End Connection", value: "Flanged ANSI 150# / DIN PN10" },
+      { label: "Working Pressure", value: "Up to 10 Bar" },
+      { label: "Temperature", value: "-20°C to +200°C" },
+      { label: "Screen Mesh", value: "20 mesh to 100 mesh (custom)" },
+      { label: "Application", value: "Inline filtration, protection of pumps & instruments" },
+    ],
+    highlights: [
+      {
+        title: "Full PTFE Wetted Path",
+        body:
+          "PTFE-lined body and screen protect against corrosion in aggressive chemical service — no metal contact with process fluid.",
+      },
+      {
+        title: "Easy Cleanout",
+        body:
+          "Removable screen basket or Y-plug allows fast cleaning or replacement without disturbing pipeline.",
+      },
+      {
+        title: "Protects Downstream Equipment",
+        body:
+          "Captures particulate before pumps, valves and instruments — extending their service life significantly.",
+      },
+    ],
+    faqs: [],
+  },
+  gaskets: {
+    tag: "Gaskets",
+    baseSpecs: [
+      { label: "Type", value: "Anti-static / PTFE / Graphite" },
+      { label: "Material", value: "Conductive PTFE / Carbon-filled PTFE" },
+      { label: "Size Range", value: "15 mm to 600 mm (NB)" },
+      { label: "Thickness", value: "1.5 mm / 3 mm / 4.5 mm (custom)" },
+      { label: "Temperature", value: "-200°C to +260°C" },
+      { label: "Pressure", value: "Up to 16 Bar" },
+      { label: "Standard", value: "ANSI / DIN / JIS" },
+      { label: "Application", value: "PTFE-lined piping, flange joints, chemical plants" },
+    ],
+    highlights: [
+      {
+        title: "Static Dissipative",
+        body:
+          "Conductive carbon-filled PTFE construction safely dissipates static charge — essential for flammable service in lined piping.",
+      },
+      {
+        title: "Universal Chemical Resistance",
+        body:
+          "PTFE base material resists virtually all acids, bases and solvents across the full operating range.",
+      },
+      {
+        title: "Drop-In Fit",
+        body:
+          "Cut to ANSI / DIN bolt patterns — drop-in replacement for standard gaskets in lined piping systems.",
+      },
+    ],
+    faqs: [],
+  },
   stirrer: {
     tag: "Stirrer",
-    img: rods,
     baseSpecs: [
       { label: "Shaft Material", value: "SS 304 / SS 316 with PTFE coating" },
       { label: "Blade Type", value: "Anchor / PBT / Propeller / Paddle" },
@@ -514,7 +563,6 @@ const presets: Record<string, Preset> = {
   },
   food: {
     tag: "Food Grade",
-    img: heat,
     baseSpecs: [
       { label: "Capacity", value: "20 L (other sizes on request)" },
       { label: "Material", value: "SS 304 / SS 316 (food grade)" },
@@ -553,7 +601,7 @@ const p = (
   slug,
   name,
   tag: opts.tag ?? preset.tag,
-  img: opts.img ?? preset.img,
+  img: opts.img ?? getProductImage(slug),
   price: opts.price,
   moq: opts.moq ?? "1 Piece",
   shortDescription:
@@ -569,13 +617,309 @@ const p = (
 });
 
 export const categories: Category[] = [
+  // ─── BOROSILICATE GLASS CATEGORIES ────────────────────────────────────────
+
+  {
+    slug: "evaporation-equipment",
+    name: "Evaporation Equipment",
+    short: "Rotary • Wiped Film • Falling Film",
+    description:
+      "Borosilicate glass evaporators for solvent recovery and concentration — rotary film, wiped/thin film and falling film configurations.",
+    image: getCategoryImage("evaporation-equipment"),
+    products: [
+      p(presets.evaporation, "rotary-film-evaporator", "Rotary Film Evaporator", {
+        shortDescription:
+          "Rotary film evaporator in borosilicate glass 3.3 for efficient evaporation and solvent recovery under vacuum.",
+        longDescription:
+          "The Rotary Film Evaporator from Gujarat Scientific And Polymer uses borosilicate glass 3.3 construction throughout the wetted path. A rotating flask creates a thin, turbulent film maximising heat transfer and evaporation rate under vacuum. The unit includes a glass condenser, receiving flask and PTFE seals. Ideal for R&D, pilot scale and small-batch production in pharma, flavour & fragrance and fine chemical industries.",
+      }),
+      p(presets.evaporation, "wiped-film-evaporator", "Wiped Film Evaporator / Thin Film Evaporator", {
+        shortDescription:
+          "Wiped/thin film evaporator for continuous, short-residence evaporation of heat-sensitive and viscous products.",
+        longDescription:
+          "The Wiped Film Evaporator (also supplied as a Thin Film Evaporator) uses a mechanically wiped, thin film on a heated borosilicate glass cylinder. Residence time is measured in seconds — critical for heat-sensitive pharmaceuticals, vitamins and natural extracts. The integral short-path condenser eliminates vapour losses. Gujarat Scientific And Polymer supplies GMP and non-GMP configurations.",
+      }),
+      p(presets.evaporation, "falling-film-evaporator", "Falling Film Evaporator", {
+        shortDescription:
+          "Falling film evaporator for gentle, continuous evaporation of dilute solutions under vacuum.",
+        longDescription:
+          "The Falling Film Evaporator distributes feed liquid as a thin falling film on the inside of borosilicate glass tubes, giving very low temperature difference between steam and product. Used for concentration of fruit juices, APIs, HCl solutions and other thermally sensitive liquids. Gujarat Scientific And Polymer designs systems to customer capacity from pilot to production scale.",
+      }),
+    ],
+  },
+
+  {
+    slug: "glass-reactors",
+    name: "Glass Lab Reactors",
+    short: "Jacketed • Spherical • CSTR • UV",
+    description:
+      "Full range of borosilicate glass lab and pilot reactors — jacketed, spherical, cylindrical, kilo lab, CSTR, UV and filter reactor configurations.",
+    image: getCategoryImage("glass-reactors"),
+    products: [
+      p(presets.glassware, "lab-glass-reactor", "Lab Glass Reactor", {
+        shortDescription:
+          "Bench-top borosilicate glass lab reactor for small-scale reaction studies in R&D and quality control.",
+        longDescription:
+          "The Lab Glass Reactor is a compact borosilicate glass 3.3 vessel with PTFE-lined stirrer, temperature probes and DN-coupled accessories. Available in 0.5 L to 20 L capacities with optional jacketing for heating/cooling. Standard bench-top model suits R&D, quality control and process development in chemical and pharmaceutical laboratories.",
+      }),
+      p(presets.glassware, "high-pressure-lab-reactor", "High Pressure Lab Reactor", {
+        shortDescription:
+          "Borosilicate glass high pressure lab reactor for reactions above atmospheric pressure in research applications.",
+        longDescription:
+          "The High Pressure Lab Reactor from Gujarat Scientific And Polymer is designed for reactions requiring elevated pressure conditions. The reactor vessel uses thick-walled borosilicate glass 3.3 rated to +3 Bar working pressure, with pressure gauge, safety rupture disc, PTFE-lined stirrer and jacketed design for precise temperature control. Supplied with MS powder-coated support stand.",
+      }),
+      p(presets.glassware, "spherical-glass-reactor", "Spherical Glass Reactor", {
+        shortDescription:
+          "Spherical borosilicate glass reactor offering maximum volume-to-surface-area ratio for efficient mixing.",
+      }),
+      p(presets.glassware, "cylindrical-glass-reactor", "Cylindrical Glass Reactor", {
+        shortDescription:
+          "Standard cylindrical borosilicate glass reactor with PTFE stirrer for chemical synthesis and process development.",
+      }),
+      p(presets.glassware, "kilo-lab-glass-reactor", "Kilo Lab Glass Reactor", {
+        shortDescription:
+          "Kilo-scale borosilicate glass reactor (20 L – 100 L) bridging lab and pilot plant scale production.",
+        longDescription:
+          "The Kilo Lab Glass Reactor serves as the critical scale-up step between laboratory synthesis and pilot production. Available in 20 L to 100 L capacities with jacketed body, PTFE-coated anchor stirrer, motor drive, temperature control and all DN-coupled glass accessories. Gujarat Scientific supplies GMP documentation upon request.",
+      }),
+      p(presets.glassware, "jacketed-glass-reactor", "Jacketed Glass Reactor", {
+        price: "Contact for price",
+        shortDescription:
+          "Jacketed borosilicate glass reactor for precise temperature-controlled reactions using hot water, steam or cooling media.",
+        longDescription:
+          "The Jacketed Glass Reactor from Gujarat Scientific And Polymer features an outer glass jacket through which heating or cooling media is circulated, enabling tight control of reaction temperature. The inner vessel is fabricated from borosilicate glass 3.3. Available 5 L to 200 L with PTFE-coated stirrer, motor drive, condenser, dropping funnel and all standard accessories on an MS powder-coated stand.",
+      }),
+      p(presets.glassware, "cstr-glass-reactor", "Continuous Stirred Tank Glass Reactor (CSTR)", {
+        shortDescription:
+          "Continuous stirred tank glass reactor for steady-state continuous reaction processes in pharma and chemical R&D.",
+      }),
+      p(presets.glassware, "uv-reactor", "Ultra Violet Reactor (UV Reactor)", {
+        shortDescription:
+          "UV reactor in borosilicate glass for photochemical reactions, water treatment and advanced oxidation processes.",
+        longDescription:
+          "The Ultra Violet (UV) Reactor uses high-transparency borosilicate glass 3.3 to maximise UV transmission into the reaction medium. UV lamps are positioned in quartz sleeves within the glass vessel. Used for photochlorination, photobromination, advanced oxidation and water/effluent treatment. Gujarat Scientific supplies complete units with UV lamp, power supply and safety enclosure.",
+      }),
+      p(presets.glassware, "triple-wall-glass-reactor", "Triple Wall Glass Reactor (Double Jacketed)", {
+        shortDescription:
+          "Triple wall (double jacketed) borosilicate glass reactor for extreme temperature differential reaction applications.",
+      }),
+      p(presets.glassware, "filter-reactor", "Filter Reactor", {
+        shortDescription:
+          "Combined reaction and filtration glass reactor — filter bottom plate eliminates product transfer steps.",
+        longDescription:
+          "The Filter Reactor integrates a sintered glass or PTFE filter plate at the base of the borosilicate glass reactor, allowing reaction and filtration in the same vessel. This eliminates product transfer and reduces contamination risk. Suitable for API synthesis, catalyst removal and crystallisation in pharmaceutical manufacturing.",
+      }),
+    ],
+  },
+
+  {
+    slug: "glass-distillation-units",
+    name: "Glass Distillation Units",
+    short: "Simple • Fractional • Short Path",
+    description:
+      "Borosilicate glass distillation plants and units — simple, fractional, reflux, reaction-distillation and molecular/short path configurations.",
+    image: getCategoryImage("glass-distillation-units"),
+    products: [
+      p(presets.glassware, "distillation-plant-glass-lined-reactor", "Distillation Plant With Glass Lined Reactor", {
+        shortDescription:
+          "Complete distillation plant integrating a glass-lined reactor with borosilicate glass distillation column and condenser train.",
+      }),
+      p(presets.glassware, "reflux-reaction-distillation-unit", "Reflux Reaction Distillation Unit", {
+        shortDescription:
+          "Reflux reaction distillation unit combining glass reactor, column, reflux condenser and receiver for simultaneous reaction and separation.",
+      }),
+      p(presets.glassware, "reaction-distillation-unit", "Reaction Distillation Unit", {
+        shortDescription:
+          "Borosilicate glass reaction distillation unit for simultaneous chemical reaction and product distillation.",
+        longDescription:
+          "The Reaction Distillation Unit from Gujarat Scientific And Polymer combines a jacketed glass reactor with a packed or plate glass distillation column and condenser assembly. As the reaction proceeds, product is continuously removed by distillation, driving equilibrium towards completion. Widely used in esterification, transesterification and solvent recovery applications.",
+      }),
+      p(presets.glassware, "simple-distillation-unit", "Simple Distillation Unit", {
+        shortDescription:
+          "Simple borosilicate glass distillation unit for laboratory and pilot-scale purification of single-component liquids.",
+      }),
+      p(presets.glassware, "fractional-distillation-unit", "Fractional Distillation Unit", {
+        shortDescription:
+          "Fractional distillation unit with packed or plate glass column for separation of close-boiling mixtures.",
+        longDescription:
+          "The Fractional Distillation Unit uses a DN-coupled borosilicate glass packed or plate column above the distillation flask to achieve multiple theoretical plates and clean separation of mixtures with close boiling points. Gujarat Scientific And Polymer supplies complete units with column, head, condenser, receivers and reflux divider.",
+      }),
+      p(presets.glassware, "molecular-distillation-unit", "Molecular Distillation / Short Path Distillation", {
+        shortDescription:
+          "Short path / molecular distillation unit for purification of high-boiling, heat-sensitive compounds under high vacuum.",
+        longDescription:
+          "Molecular Distillation (Short Path Distillation) operates under high vacuum (0.001 mbar) with an internal condenser positioned just millimetres from the evaporator surface — minimising the mean free path and enabling distillation of high molecular weight compounds (vitamins, fatty acids, cannabis extracts, silicone oils) at temperatures far below their normal boiling points.",
+      }),
+    ],
+  },
+
+  {
+    slug: "engineered-glass-systems",
+    name: "Engineered Glass Systems",
+    short: "Filters • Extractors • Fermentors",
+    description:
+      "Purpose-built borosilicate glass process systems — Nutsche filters, phase separators, mixer settlers, fermentors, chromatography columns and extraction units.",
+    image: getCategoryImage("engineered-glass-systems"),
+    products: [
+      p(presets.engineeredGlass, "glass-nutsche-filter", "Glass Nutsche Filter", {
+        shortDescription:
+          "Borosilicate glass Nutsche filter for batch pressure or vacuum filtration in pharmaceutical and fine chemical manufacturing.",
+        longDescription:
+          "The Glass Nutsche Filter is a closed, pressure-rated borosilicate glass vessel with a sintered glass or PTFE filter plate. Slurry is charged into the vessel and filtered under vacuum or pressure — without exposure to the atmosphere. Cake washing, reslurrying and drying under vacuum are all carried out in the same vessel. Supplied in GMP and non-GMP versions with full documentation.",
+      }),
+      p(presets.engineeredGlass, "glass-agitated-nutsche-filter", "Glass Agitated Nutsche Filter", {
+        shortDescription:
+          "Glass agitated Nutsche filter with PTFE-coated stirrer for uniform cake washing and smoothing in pharmaceutical API manufacture.",
+      }),
+      p(presets.engineeredGlass, "glass-phase-separator", "Glass Phase Separator", {
+        shortDescription:
+          "Borosilicate glass phase separator for clean liquid-liquid phase separation of immiscible solvents and process streams.",
+      }),
+      p(presets.engineeredGlass, "glass-mixer-settler", "Glass Mixer Settler", {
+        shortDescription:
+          "Multi-stage borosilicate glass mixer settler for counter-current liquid-liquid extraction in R&D and pilot plants.",
+      }),
+      p(presets.engineeredGlass, "glass-mixing-vessel", "Glass Mixing Vessel", {
+        shortDescription:
+          "Borosilicate glass mixing vessel with PTFE stirrer for blending, dissolution and preparation of process media.",
+      }),
+      p(presets.engineeredGlass, "glass-fermentor", "Fermentor (Glass)", {
+        shortDescription:
+          "Borosilicate glass fermentor / bioreactor for aerobic and anaerobic fermentation in pharmaceutical and biotech R&D.",
+        longDescription:
+          "The Glass Fermentor from Gujarat Scientific And Polymer is fabricated from borosilicate glass 3.3 with a stainless steel head plate fitted with multiple ports for agitator, sparger, pH probe, DO probe, temperature sensor and sampling. Available 2 L to 100 L. The transparent glass vessel enables direct visual observation of fermentation progress, foam level and broth colour.",
+      }),
+      p(presets.engineeredGlass, "glass-chromatography-column", "Glass Chromatography Column", {
+        shortDescription:
+          "Borosilicate glass chromatography column for preparative-scale separation and purification of APIs and natural products.",
+      }),
+      p(presets.engineeredGlass, "solid-liquid-extraction-unit", "Solid-Liquid Extraction Unit", {
+        shortDescription:
+          "Borosilicate glass solid-liquid extraction unit (Soxhlet-style or percolation) for botanical, herbal and pharmaceutical extractions.",
+      }),
+      p(presets.engineeredGlass, "liquid-liquid-extraction-unit", "Liquid-Liquid Extraction Unit", {
+        shortDescription:
+          "Multi-stage borosilicate glass liquid-liquid extraction unit in GMP / Non-GMP and FLP / Non-FLP configurations.",
+        longDescription:
+          "The Liquid-Liquid Extraction Unit from Gujarat Scientific And Polymer uses borosilicate glass 3.3 construction with PTFE-lined fittings throughout. Available in GMP & Non-GMP and Flame-proof (FLP) & Non-FLP variants. Systems range from single mixer-settler stages to multi-stage counter-current extraction trains. Supplied complete with support structure, pumps and instrumentation.",
+      }),
+    ],
+  },
+
+  {
+    slug: "glass-columns",
+    name: "Glass Columns & Column Internals",
+    short: "2\" to 24\" dia • Structured & Random Packing",
+    description:
+      "Borosilicate glass columns from 2\" to 24\" diameter with complete internals — packings, supports, distributors and feed sections.",
+    image: getCategoryImage("glass-columns"),
+    products: [
+      p(presets.glassColumns, "glass-column-2-to-24-inch", "Glass Column (2\" to 24\" Diameter)", {
+        shortDescription:
+          "Borosilicate glass distillation / absorption column available from 2\" pilot scale to 24\" production scale.",
+        longDescription:
+          "Gujarat Scientific And Polymer supplies borosilicate glass 3.3 columns from 50 mm (2\") to 600 mm (24\") nominal diameter. Each column section is flanged with DN couplings for easy assembly, cleaning and modification. Columns are engineered for distillation, absorption, scrubbing and stripping duty in chemical, pharmaceutical and HCl / H₂SO₄ service.",
+      }),
+      p(presets.glassColumns, "glass-column-structured-packing", "Glass Column Structured Packing", {
+        shortDescription:
+          "High-efficiency glass structured packing for borosilicate glass distillation columns — low pressure drop, high capacity.",
+      }),
+      p(presets.glassColumns, "glass-column-random-packing", "Glass Column Random Packing", {
+        shortDescription:
+          "Borosilicate glass random packing (Raschig rings, saddles) for acid-resistant distillation and absorption columns.",
+      }),
+      p(presets.glassColumns, "glass-packing-support-retainer", "Packing Support & Retainer", {
+        shortDescription:
+          "Borosilicate glass packing support grids and retainers for secure bed support in glass distillation columns.",
+      }),
+      p(presets.glassColumns, "glass-liquid-distributor", "Liquid Distributor & Re-Distributor", {
+        shortDescription:
+          "Glass liquid distributors and re-distributors for even liquid distribution across the packed bed in glass columns.",
+      }),
+      p(presets.glassColumns, "glass-column-feed-section", "Column Feed Section", {
+        shortDescription:
+          "Borosilicate glass column feed sections for accurate introduction of feed liquid at the correct column position.",
+      }),
+    ],
+  },
+
+  {
+    slug: "glass-heat-exchangers",
+    name: "Glass Heat Exchangers",
+    short: "Shell & Tube • Coil Condenser",
+    description:
+      "Glass heat exchangers and shell-and-tube assemblies for efficient heat transfer in corrosive environments.",
+    image: getCategoryImage("glass-heat-exchangers"),
+    products: [
+      p(presets.heatExchanger, "glass-shell-and-tube-heat-exchanger", "Glass Shell And Tube Heat Exchanger", {
+        shortDescription:
+          "Borosilicate glass shell and tube heat exchanger for corrosion-free heating, cooling and condensation duties.",
+        longDescription:
+          "The Glass Shell And Tube Heat Exchanger from Gujarat Scientific And Polymer uses borosilicate glass 3.3 tubes and shell (or MS/SS shell with glass tubes) to deliver fully corrosion-resistant heat transfer for acids, solvents and corrosive intermediates. Available as condenser, cooler, heater or reboiler in heat transfer areas from 0.5 m² to 50 m². DN-coupled end caps allow easy tube bundle inspection and cleaning.",
+      }),
+      p(presets.heatExchanger, "ms-ptfe-glass-shell-and-tube", "MS PTFE Glass Shell And Tube Heat Exchanger", {
+        shortDescription:
+          "Shell and tube heat exchanger with MS shell, PTFE tube sheets and borosilicate glass tubes for maximum chemical resistance.",
+      }),
+      p(presets.heatExchanger, "glass-coil-condenser", "Glass Coil Condenser", {
+        shortDescription:
+          "Borosilicate glass coil condenser for laboratory and pilot plant distillation, reflux and vapour condensation duties.",
+        longDescription:
+          "The Glass Coil Condenser uses a helical borosilicate glass coil immersed in a glass shell through which cooling water flows counter-currently. High surface area-to-volume ratio delivers efficient condensation of solvent vapours. Available in DN 50 to DN 200 with standard DN couplings for direct connection to glass column assemblies.",
+      }),
+      p(presets.heatExchanger, "heat-exchanger-and-condenser-tubes", "Heat Exchanger And Condenser Tubes (Replacement)", {
+        shortDescription:
+          "Replacement borosilicate glass heat exchanger and condenser tubes for all standard glass process equipment.",
+      }),
+    ],
+  },
+
+  {
+    slug: "process-engineering-packages",
+    name: "Process Engineering Packages",
+    short: "HCl • H₂SO₄ • Gas Absorption • Bromine",
+    description:
+      "Turnkey borosilicate glass process engineering packages for HCl generation, gas absorption, sulphuric acid dilution/concentration and bromine recovery.",
+    image: getCategoryImage("process-engineering-packages"),
+    products: [
+      p(presets.processEngineering, "hcl-gas-generation-unit", "HCl Gas Generation Unit", {
+        shortDescription:
+          "Turnkey HCl gas generation unit in borosilicate glass — boiling route, sulphuric acid route or calcium chloride route.",
+        longDescription:
+          "Gujarat Scientific And Polymer supplies complete HCl Gas Generation Units using borosilicate glass, PP and FRP construction. Three process routes are available: (1) Boiling Route — direct evaporation of hydrochloric acid solution; (2) Sulphuric Acid Route — reaction of NaCl with H₂SO₄; (3) Calcium Chloride Route — displacement reaction. Each package includes reactor/generator, absorption column, tail gas scrubber and instrumentation.",
+      }),
+      p(presets.processEngineering, "gas-absorber-adiabatic", "Gas Absorber — Adiabatic Type", {
+        shortDescription:
+          "Adiabatic gas absorber in borosilicate glass for absorption of HCl, HBr, SO₂, NH₃ and other gases into liquid.",
+      }),
+      p(presets.processEngineering, "sulphuric-acid-dilution-unit", "Sulphuric Acid Dilution Unit", {
+        shortDescription:
+          "Safe, controlled sulphuric acid dilution unit in borosilicate glass with inline mixing and temperature monitoring.",
+        longDescription:
+          "Diluting concentrated sulphuric acid generates extreme heat. The Gujarat Scientific Sulphuric Acid Dilution Unit uses a controlled-mixing borosilicate glass system with inline temperature monitoring and automatic feed control to ensure safe, repeatable dilution to any target concentration. Fully lined piping, PTFE valves and glass instrumentation throughout.",
+      }),
+      p(presets.processEngineering, "sulphuric-acid-concentration-unit", "Sulphuric Acid Concentration Unit", {
+        shortDescription:
+          "Borosilicate glass sulphuric acid concentration unit for reconcentration of spent or dilute sulphuric acid streams.",
+      }),
+      p(presets.processEngineering, "bromine-recovery-unit", "Bromine Recovery Unit", {
+        shortDescription:
+          "Bromine recovery unit from bromide solution or sea bittern using borosilicate glass oxidation and stripping columns.",
+        longDescription:
+          "The Bromine Recovery Unit from Gujarat Scientific And Polymer recovers elemental bromine from bromide-containing brines or sea bittern by oxidation with chlorine followed by stripping with steam or air in borosilicate glass packed columns. The bromine vapour is absorbed and condensed to produce commercial-grade liquid bromine. Complete package includes oxidation reactor, stripping column, condenser, absorber and storage.",
+      }),
+    ],
+  },
+
+  // ─── PTFE LINED PRODUCT CATEGORIES ───────────────────────────────────────
+
   {
     slug: "bellows-expansion-joints",
-    name: "Bellows Expansion Joints",
+    name: "PTFE Expansion Joint Bellows",
     short: "PTFE & high-pressure",
     description:
       "High-pressure PTFE and PTFE-lined bellows engineered for thermal expansion, vibration absorption and chemical resistance.",
-    image: bellow,
+    image: getCategoryImage("bellows-expansion-joints"),
     products: [
       p(presets.bellows, "ptfe-expansion-joint-bellow", "PTFE Expansion Joint Bellow", {
         price: "8500 INR / Piece",
@@ -590,181 +934,297 @@ export const categories: Category[] = [
       p(presets.bellows, "ptfe-line-bellow", "PTFE Line Bellow"),
       p(presets.bellows, "300mm-ptfe-bellow", "300mm PTFE Bellow"),
       p(presets.bellows, "ptfe-high-pressure-bellow", "PTFE High Pressure Bellow"),
-      p(presets.bellows, "ptfe-redistributor-tl", "PTFE Redistributor (TL)"),
-      p(presets.bellows, "line-bellow-with-ms-flange", "Line Bellow with MS Flange"),
       p(presets.bellows, "ms-high-pressure-bellow", "MS High Pressure Bellow"),
-      p(presets.bellows, "con-soket-bellow", "CON Socket Bellow"),
     ],
   },
+
   {
     slug: "lined-valves",
     name: "Lined Valves",
     short: "PTFE / FEP / PFA",
     description:
       "PTFE-lined valves built to handle aggressive media — corrosion-proof, leak-tight and designed for long service life.",
-    image: valve,
+    image: getCategoryImage("lined-valves"),
     products: [
-      p(presets.valves, "ptfe-lined-butterfly-gate-valve", "PTFE Lined Butterfly Gate Valve"),
-      p(presets.valves, "ptfe-lined-plug-valve", "PTFE Lined Plug Valve"),
-      p(presets.valves, "bakelite-bonet-and-ptfe-valve", "Bakelite Bonnet And PTFE Valve"),
-      p(presets.valves, "bakilt-bonet-ptfe-valve", "Bakelite Bonnet PTFE Valve"),
-      p(presets.valves, "bakelite-bonet-ptfe-valve", "Bakelite Bonnet & PTFE Valve"),
-      p(presets.valves, "ms-ptfe-lined-ball-valves", "MS PTFE Lined Ball Valves"),
-      p(presets.valves, "ms-rust-proof-ptfe-lined-ball-valves", "MS Rust-Proof PTFE Lined Ball Valves"),
-      p(presets.valves, "ptfe-lined-ball-check-valve", "PTFE Lined Ball Check Valve"),
-      p(presets.valves, "ptfe-linned-butterfly-gate-valve", "PTFE Lined Butterfly Gate Valve (Heavy Duty)"),
+      p(presets.valves, "ptfe-lined-ball-valve", "Lined Ball Valve", {
+        shortDescription:
+          "PTFE-lined ball valve with full-bore port and bubble-tight shut-off for corrosive chemical service.",
+        longDescription:
+          "The Lined Ball Valve from Gujarat Scientific And Polymer features a CS or SS body with fully encapsulated PTFE / PFA lining. The ball and seats are also lined, giving a zero-contact metal-to-process-fluid design. Manual, pneumatic and electric actuated versions are available. Sizes 15 mm to 300 mm, ANSI 150# / DIN PN10 flanged ends.",
+      }),
+      p(presets.valves, "ptfe-lined-butterfly-valve", "Lined Butterfly Valve", {
+        shortDescription:
+          "PTFE-lined butterfly valve for on-off and throttling service in corrosive chemical and pharmaceutical piping.",
+      }),
+      p(presets.valves, "ptfe-lined-plug-valve", "Lined Plug Valve", {
+        shortDescription:
+          "PTFE-lined plug valve with quarter-turn operation for bubble-tight isolation in aggressive chemical service.",
+      }),
+      p(presets.valves, "lined-diaphragm-valve", "Lined Diaphragm Valve", {
+        shortDescription:
+          "PTFE-lined diaphragm valve offering drip-tight shut-off and crevice-free flow path for pharmaceutical and chemical duty.",
+        longDescription:
+          "The Lined Diaphragm Valve uses a flexible PTFE diaphragm as the only wetted moving part, eliminating the need for packing or seals in contact with the process fluid. The CS or SS body is fully PTFE-lined. Ideal for sterile pharmaceutical duty, slurries and highly corrosive media where leakage cannot be tolerated. Manual and actuated versions available.",
+      }),
+      p(presets.valves, "lined-swing-check-valve", "Lined Swing Check Valve", {
+        shortDescription:
+          "PTFE-lined swing check valve preventing backflow in corrosive chemical piping systems.",
+      }),
+      p(presets.valves, "lined-ball-check-valve", "Lined Ball Check Valve", {
+        shortDescription:
+          "PTFE-lined ball check valve with spring-assisted closure for reliable backflow prevention in chemical service.",
+      }),
+      p(presets.valves, "lined-sampling-valve-sandwich", "Lined Sampling Valve — Sandwich Type", {
+        shortDescription:
+          "Wafer-style PTFE-lined sampling valve for representative process sample collection without full pipeline interruption.",
+      }),
+      p(presets.valves, "lined-sampling-valve-t-type", "Lined Sampling Valve — T Type", {
+        shortDescription:
+          "T-type PTFE-lined sampling valve for inline sample collection from PTFE-lined process piping.",
+      }),
+      p(presets.valves, "flush-bottom-valve", "Flush Bottom Valve", {
+        shortDescription:
+          "PTFE-lined flush bottom valve for complete drain of reactor, tank or vessel contents with zero dead volume.",
+        longDescription:
+          "The Flush Bottom Valve mounts directly to the bottom nozzle of a reactor or tank. When open, the plug sits flush with the vessel bottom — eliminating the dead volume that collects product, solids or contamination found with conventional drain valves. PTFE-lined body and plug. Available in manual and actuated configurations, 25 mm to 150 mm.",
+      }),
       p(presets.valves, "ms-ptfe-linned-flush-bottom-valve", "MS PTFE Lined Flush Bottom Valve"),
-      p(presets.valves, "plug-valve", "Plug Valve"),
-      p(presets.valves, "diaphragm-valve", "Diaphragm Valve"),
-      p(presets.valves, "fep-ball-valves", "FEP Ball Valves"),
-      p(presets.valves, "lined-swing-check-valve", "Lined Swing Check Valve"),
-      p(presets.valves, "ptfe-drain-valves", "PTFE Drain Valves"),
     ],
   },
+
   {
-    slug: "laboratory-glassware",
-    name: "Laboratory Glassware",
-    short: "Borosilicate 3.3",
+    slug: "ptfe-lined-fittings",
+    name: "PTFE Lined Pipe Fittings",
+    short: "Elbows • Tees • Reducers • Crosses",
     description:
-      "Premium borosilicate laboratory and industrial glassware for chemical, pharma and research applications.",
-    image: reactor,
+      "Complete range of PTFE-lined pipe fittings — pipe spools, elbows, tees, crosses, reducers, dip pipes and headers.",
+    image: getCategoryImage("ptfe-lined-fittings"),
     products: [
-      p(presets.glassware, "50l-jacketed-glass-reactor", "50L Jacketed Glass Reactor"),
-      p(presets.glassware, "jacketed-glass-reactor-50l", "Jacketed Glass Reactor (50L)"),
-      p(presets.glassware, "borosilicate-glass-jacketed-reactor-unit", "Borosilicate Glass Jacketed Reactor Unit"),
-      p(presets.glassware, "glass-stirring-assembly", "Glass Stirring Assembly"),
-      p(presets.glassware, "glass-cylindrical-vessel", "Glass Cylindrical Vessel"),
-      p(presets.glassware, "glr-glass-distillation-equipments", "GLR Glass Distillation Equipments"),
-      p(presets.glassware, "reaction-distillation-unit", "Reaction Distillation Unit"),
-      p(presets.glassware, "glass-distillation-apparatus", "Glass Distillation Apparatus"),
-      p(presets.glassware, "reaction-cum-distillation-assembly", "Reaction Cum Distillation Assembly"),
-      p(presets.glassware, "jacketed-distillation-glass-assembly", "Jacketed Distillation Glass Assembly"),
-      p(presets.glassware, "laboratory-equipment", "Laboratory Equipment"),
-      p(presets.glassware, "ptfe-lap-seal", "PTFE Lap Seal"),
-      p(presets.glassware, "ptfe-specialized-high-performance-lap-seal", "PTFE Specialized High-Performance Lap Seal"),
+      p(presets.fittings, "lined-pipe-spool", "Lined Pipe Spool", {
+        shortDescription:
+          "PTFE-lined MS pipe spool for connecting PTFE-lined valves and fittings in corrosive chemical piping systems.",
+      }),
+      p(presets.fittings, "lined-elbow-90", "Lined Elbow 90°", {
+        shortDescription:
+          "PTFE-lined 90° elbow for direction changes in corrosive chemical piping — spark-tested, vent-hole provided.",
+      }),
+      p(presets.fittings, "lined-elbow-45", "Lined Elbow 45°", {
+        shortDescription:
+          "PTFE-lined 45° elbow for gradual direction changes in corrosive chemical and pharmaceutical piping.",
+      }),
+      p(presets.fittings, "lined-equal-tee", "Lined Equal Tee", {
+        shortDescription:
+          "PTFE-lined equal tee for branching corrosive process streams — full-bore flow path with zero dead volume.",
+      }),
+      p(presets.fittings, "lined-instrument-tee", "Lined Instrument Tee", {
+        shortDescription:
+          "PTFE-lined instrument tee for connecting pressure gauges, transmitters or temperature elements to lined piping.",
+      }),
+      p(presets.fittings, "lined-equal-cross", "Lined Equal Cross", {
+        shortDescription:
+          "PTFE-lined equal cross fitting for four-way distribution of corrosive process fluids.",
+      }),
+      p(presets.fittings, "lined-concentric-reducer", "Lined Concentric Reducer", {
+        shortDescription:
+          "PTFE-lined concentric reducer for diameter transitions in PTFE-lined chemical piping systems.",
+      }),
+      p(presets.fittings, "lined-hose-pipe", "Lined Hose Pipe", {
+        shortDescription:
+          "Flexible PTFE-lined hose pipe for connecting lined piping systems across vibrating or moving equipment.",
+      }),
+      p(presets.fittings, "lined-jacketed-spool", "Lined Jacketed Spool", {
+        shortDescription:
+          "PTFE-lined jacketed pipe spool for temperature-controlled transport of heat-sensitive or viscous corrosive fluids.",
+      }),
+      p(presets.fittings, "lined-jacketed-elbow-90", "Lined Jacketed Elbow 90°", {
+        shortDescription:
+          "PTFE-lined jacketed 90° elbow for heated or cooled direction changes in viscous or solidifying process streams.",
+      }),
+      p(presets.fittings, "ptfe-lined-header", "PTFE Lined Header", {
+        shortDescription:
+          "PTFE-lined distribution header for even flow distribution across multiple branch lines in chemical process plants.",
+      }),
+      p(presets.fittings, "lined-dip-pipe-sparger", "Lined Dip Pipe With Sparger", {
+        shortDescription:
+          "PTFE-lined dip pipe with sparger for sparging gas or liquid into the base of a reactor or storage tank.",
+      }),
+      p(presets.fittings, "pure-antistatic-drop-tube", "Pure Antistatic Drop Tube", {
+        shortDescription:
+          "Conductive antistatic PTFE drop tube for safe transfer of flammable liquids into vessels — dissipates static charge.",
+      }),
+      p(presets.fittings, "lined-y-strainer", "Lined Y Strainer", {
+        shortDescription:
+          "PTFE-lined Y-type strainer for inline filtration of corrosive process streams before valves and instruments.",
+      }),
+      p(presets.fittings, "lined-basket-strainer", "Basket Strainer (Lined)", {
+        shortDescription:
+          "PTFE-lined basket strainer for high-flow filtration of corrosive liquids in chemical process piping.",
+      }),
+      p(presets.fittings, "ms-ptfe-lined-pipe-spool", "MS PTFE Lined Pipe And Fittings (Complete Sets)", {
+        shortDescription:
+          "Complete sets of MS PTFE-lined pipe and fittings supplied as a matched system for new plant construction.",
+      }),
     ],
   },
-  {
-    slug: "glass-heat-exchangers",
-    name: "Glass Heat Exchangers",
-    short: "Shell & Tube • Coil",
-    description:
-      "Glass heat exchangers and shell-and-tube assemblies for efficient heat transfer in corrosive environments.",
-    image: heat,
-    products: [
-      p(presets.heatExchanger, "ms-ptfe-glass-shell-and-tube", "MS PTFE Glass Shell And Tube"),
-      p(presets.heatExchanger, "glass-tube-heat-exchanger", "Glass Tube Heat Exchanger"),
-      p(presets.heatExchanger, "shell-and-tube-glass-heat-exchanger", "Shell And Tube Glass Heat Exchanger"),
-      p(presets.heatExchanger, "glass-body-shell-and-tube", "Glass Body Shell And Tube"),
-      p(presets.heatExchanger, "glass-shell-and-tube-heat-exchanger", "Glass Shell And Tube Heat Exchanger"),
-      p(presets.heatExchanger, "sswpl-heat-exchangers-component", "SSWPL Heat Exchangers Component (Glass & MS, Shell & Tube)"),
-      p(presets.heatExchanger, "heat-exchanger-and-condenser-tubes", "Heat Exchanger And Condenser Tubes"),
-      p(presets.heatExchanger, "tube-heat-exchanger", "Tube Heat Exchanger"),
-      p(presets.heatExchanger, "shell-and-tube-condenser-complete", "Shell And Tube Condenser (Complete)"),
-    ],
-  },
+
   {
     slug: "industrial-sight-glass",
     name: "Industrial Sight Glass",
-    short: "Single & Double window",
+    short: "Single & Double window • PTFE Lined",
     description:
-      "Industrial sight glasses for visual monitoring of process flows under pressure and temperature.",
-    image: sight,
+      "Industrial sight glasses for visual monitoring of process flows under pressure and temperature — single window, double window and PTFE-lined types.",
+    image: getCategoryImage("industrial-sight-glass"),
     products: [
-      p(presets.sightGlass, "industrial-sight-glass", "Industrial Sight Glass"),
-      p(presets.sightGlass, "double-window-sight-glass", "Double Window Sight Glass"),
-      p(presets.sightGlass, "double-window-type-sight-glass", "Double Window Type Sight Glass"),
+      p(presets.sightGlass, "industrial-sight-glass", "Industrial Sight Glass", {
+        shortDescription:
+          "Single-window borosilicate sight glass for visual monitoring of process flows in industrial pipelines.",
+      }),
+      p(presets.sightGlass, "double-window-sight-glass", "Lined Double Window Sight Glass", {
+        shortDescription:
+          "Double-window PTFE-lined sight glass for visual inspection of corrosive process media in lined piping systems.",
+        longDescription:
+          "The Lined Double Window Sight Glass features two toughened borosilicate glass windows for illuminated observation of process media from opposite sides. The body is PTFE-lined to withstand corrosive chemicals. MS or SS body with ANSI / DIN flanged ends. Available 25 mm to 200 mm. The PTFE lining makes it directly compatible with PTFE-lined piping systems.",
+      }),
+      p(presets.sightGlass, "ptfe-lined-sight-glass", "PTFE Lined Sight Glass", {
+        shortDescription:
+          "PTFE-lined sight glass for visual monitoring of corrosive chemical flows — direct replacement in lined piping systems.",
+      }),
     ],
   },
-  {
-    slug: "ptfe-lined-fittings",
-    name: "PTFE Lined Fittings",
-    short: "Tees • Elbows • Reducers",
-    description:
-      "Complete range of PTFE-lined pipe fittings — tees, elbows, reducers, crosses and feed pipes.",
-    image: elbow,
-    products: [
-      p(presets.fittings, "ms-ptfe-lined-pipe-and-fittings", "MS PTFE Lined Pipe and Fittings"),
-      p(presets.fittings, "45-ms-ptfe-lined-elbow", "45° MS PTFE Lined Elbow"),
-      p(presets.fittings, "lined-elbow-45", "Lined Elbow 45°"),
-      p(presets.fittings, "lined-elbow-90", "Lined Elbow 90°"),
-      p(presets.fittings, "ms-ptfe-elbow-pipe", "MS PTFE Elbow Pipe"),
-      p(presets.fittings, "ptfe-lined-equal-tees", "PTFE Lined Equal Tees"),
-      p(presets.fittings, "ms-ptfe-lined-equal-tee", "MS PTFE Lined Equal Tee"),
-      p(presets.fittings, "ptfe-lined-equal-cross", "PTFE Lined Equal Cross"),
-      p(presets.fittings, "lined-equal-cross", "Lined Equal Cross"),
-      p(presets.fittings, "ptfe-lined-unequal-cross", "PTFE Lined Unequal Cross"),
-      p(presets.fittings, "lined-equal-tee", "Lined Equal Tee"),
-      p(presets.fittings, "lined-equal-tee-epoxy", "Epoxy Painted Lined Equal Tee"),
-      p(presets.fittings, "ptfe-lined-reducer", "PTFE Lined Reducer"),
-      p(presets.fittings, "lined-reducer-flange", "Lined Reducer Flange"),
-      p(presets.fittings, "lined-conentric-reducer", "Lined Concentric Reducer"),
-      p(presets.fittings, "ms-ptfe-lined-pipe", "MS PTFE Lined Pipe"),
-      p(presets.fittings, "ms-ptfe-lined-dip-pipe-fitting", "MS PTFE Lined Dip Pipe Fitting"),
-      p(presets.fittings, "ptfe-feed-pipes", "PTFE Feed Pipes"),
-      p(presets.fittings, "ms-ptfe-linend-hedar", "MS PTFE Lined Header"),
-    ],
-  },
+
   {
     slug: "flanges-spacers",
-    name: "Flanges & Spacers",
-    short: "PTFE / PFA / FEP lined",
+    name: "Flanges, Blind Flanges & Spacers",
+    short: "Reducing • Blind • Spectacle • Spacer",
     description:
-      "PTFE / PFA / FEP lined flanges, reducing flanges and spacers in ANSI, DIN and JIS dimensions.",
-    image: flange,
+      "PTFE / PFA / FEP lined flanges — reducing, blind, spectacle blind and spacers in ANSI, DIN and JIS dimensions.",
+    image: getCategoryImage("flanges-spacers"),
     products: [
-      p(presets.flanges, "ptfe-lined-reducing-flange", "PTFE Lined Reducing Flange"),
+      p(presets.flanges, "lined-reducing-flange", "Lined Reducing Flange", {
+        shortDescription:
+          "PTFE-lined reducing flange for diameter transitions in PTFE-lined corrosive chemical piping systems.",
+      }),
       p(presets.flanges, "ms-ptfe-lined-reducing-flange", "MS PTFE Lined Reducing Flange"),
-      p(presets.flanges, "pfa-fep-lined-spacer", "PFA / FEP Lined Spacer"),
-      p(presets.flanges, "pfa-fep-lined-spacer-2", "PFA - FEP Lined Spacer (Heavy)"),
+      p(presets.flanges, "lined-blind-flange", "Lined Blind Flange", {
+        shortDescription:
+          "PTFE-lined blind flange for pressure-rated closure of pipeline ends and vessel nozzles in corrosive service.",
+      }),
+      p(presets.flanges, "spectacle-blind-flange", "Spectacle Blind Flange", {
+        shortDescription:
+          "PTFE-lined spectacle blind flange for positive isolation or full-bore flow in chemical process piping.",
+        longDescription:
+          "The Spectacle Blind Flange (also called a figure-8 blind) provides reliable positive isolation between two flanges. Rotating the spectacle switches between the solid blind (isolation) and open ring (flow) positions without removing any piping. PTFE-lined body for corrosive chemical service. Available ANSI 150# and DIN PN10/PN16.",
+      }),
+      p(presets.flanges, "pfa-fep-lined-spacer", "PFA / FEP Lined Spacer", {
+        shortDescription:
+          "PFA / FEP lined flange spacer for corrosion-resistant isolation between flanged connections in lined piping.",
+      }),
     ],
   },
+
   {
     slug: "ptfe-products",
-    name: "PTFE Products",
-    short: "Rods • Tubes • Custom",
+    name: "PTFE Machined & Moulded Products",
+    short: "Rods • Tubes • Sheets • Custom",
     description:
-      "Pure PTFE products including rods, tubes, sheets, machined parts and custom polymer components.",
-    image: rods,
+      "Pure and filled PTFE products — rods, tubes, sheets, machined components and custom moulded parts for industrial applications.",
+    image: getCategoryImage("ptfe-products"),
     products: [
-      p(presets.ptfe, "teflon-rods", "Teflon Rods"),
-      p(presets.ptfe, "te-flon-rods", "TE-FLON Rods"),
-      p(presets.ptfe, "teflonsi-rods", "Teflon SI Rods"),
-      p(presets.ptfe, "ptfe-tube", "PTFE Tube"),
-      p(presets.ptfe, "ptfe-pipe", "PTFE Pipe"),
-      p(presets.ptfe, "ptfe-product", "PTFE Product"),
-      p(presets.ptfe, "ptfe-product-base", "PTFE Product (Custom)"),
-      p(presets.ptfe, "ptfe-convener-road", "PTFE Conveyer Rod"),
-      p(presets.ptfe, "ptfe-conveyer-road", "PTFE Conveyer Road"),
-      p(presets.ptfe, "ptfe-stuffing-boxes", "PTFE Stuffing Boxes"),
+      p(presets.ptfe, "ptfe-rod", "PTFE Rod (Teflon Rod)", {
+        shortDescription:
+          "Virgin PTFE rod in standard and custom diameters for machining gaskets, bushes, seals and custom components.",
+      }),
+      p(presets.ptfe, "ptfe-tube", "PTFE Tube", {
+        shortDescription:
+          "Extruded PTFE tube for lining, sleeving, chemical transfer and high-purity fluid handling applications.",
+      }),
+      p(presets.ptfe, "ptfe-pipe", "PTFE Pipe", {
+        shortDescription:
+          "Extruded PTFE pipe for transfer of highly corrosive acids and ultra-pure process fluids.",
+      }),
+      p(presets.ptfe, "ptfe-sheet", "PTFE Sheet", {
+        shortDescription:
+          "Virgin PTFE sheet for gasket cutting, lining, laboratory bench covers and chemical-resistant fabrications.",
+      }),
+      p(presets.ptfe, "ptfe-molded-machined-products", "PTFE Moulded & Machined Products", {
+        shortDescription:
+          "Custom PTFE moulded and CNC-machined components manufactured to customer drawings and specifications.",
+        longDescription:
+          "Gujarat Scientific And Polymer manufactures custom PTFE components by compression moulding and CNC machining to any customer specification. Common items include valve seats, diaphragms, gaskets, impellers, bushings, nozzles and bespoke machined parts. Virgin and filled PTFE (glass-filled, carbon-filled, bronze-filled) grades are available. FDA-compliant material certification provided on request.",
+      }),
+      p(presets.ptfe, "ptfe-stuffing-boxes", "PTFE Stuffing Boxes", {
+        shortDescription:
+          "PTFE stuffing box packing rings and complete stuffing box assemblies for corrosion-resistant shaft sealing.",
+      }),
+      p(presets.ptfe, "ptfe-conveyer-rod", "PTFE Conveyor Rod", {
+        shortDescription:
+          "PTFE conveyor rod for non-stick, chemical-resistant conveyor and guide rail applications.",
+      }),
     ],
   },
+
+  {
+    slug: "anti-static-gaskets",
+    name: "Anti-Static Gaskets",
+    short: "Conductive PTFE",
+    description:
+      "Conductive PTFE anti-static gaskets for PTFE-lined piping systems handling flammable or static-sensitive process media.",
+    image: getCategoryImage("anti-static-gaskets"),
+    products: [
+      p(presets.gaskets, "anti-static-gasket", "Anti-Static Gasket", {
+        shortDescription:
+          "Conductive carbon-filled PTFE anti-static gasket for safe static dissipation in PTFE-lined flammable service piping.",
+        longDescription:
+          "Standard PTFE gaskets are insulators and can accumulate dangerous static charges in lined piping systems handling flammable solvents. The Anti-Static Gasket from Gujarat Scientific And Polymer uses carbon-filled conductive PTFE to maintain electrical continuity across flanged joints, safely dissipating static to ground. Supplied to ANSI 150# and DIN PN10/PN16 dimensions.",
+      }),
+    ],
+  },
+
+  {
+    slug: "lined-strainers",
+    name: "Lined Strainers",
+    short: "Y-Type • Basket Type",
+    description:
+      "PTFE-lined Y-type and basket strainers for inline protection of pumps, valves and instruments in corrosive chemical service.",
+    image: getCategoryImage("lined-strainers"),
+    products: [
+      p(presets.strainer, "lined-y-strainer-product", "Lined Y Strainer", {
+        shortDescription:
+          "PTFE-lined Y-type strainer for compact inline filtration of corrosive chemical process streams.",
+      }),
+      p(presets.strainer, "lined-basket-strainer-product", "Lined Basket Strainer", {
+        shortDescription:
+          "PTFE-lined basket strainer for high-flow inline filtration of corrosive liquids in chemical process plants.",
+        longDescription:
+          "The Lined Basket Strainer from Gujarat Scientific And Polymer features a large-area removable basket with PTFE-lined body and cover. High flow area minimises pressure drop across the strainer. The basket can be removed, cleaned and replaced quickly without disturbing the pipeline. Available 25 mm to 200 mm with ANSI / DIN flanged ends.",
+      }),
+    ],
+  },
+
   {
     slug: "stirrers",
     name: "PTFE Industrial Stirrers",
     short: "Anchor • PBT • Blade",
     description:
       "PTFE-coated industrial and laboratory stirrers — anchor, PBT, paddle and blade types for reactors.",
-    image: rods,
+    image: getCategoryImage("stirrers"),
     products: [
-      p(presets.stirrer, "ss-ptfe-line-sterrer-lab", "SS PTFE Lined Stirrer (Lab)"),
+      p(presets.stirrer, "ss-ptfe-lined-stirrer-lab", "SS PTFE Lined Stirrer (Lab)"),
       p(presets.stirrer, "ss-ptfe-lined-stirrer", "SS PTFE Lined Stirrer"),
-      p(presets.stirrer, "ss-ptfe-line-sterrer-laboratory-equipment", "SS PTFE Lined Stirrer (Laboratory Equipment)"),
       p(presets.stirrer, "ss-ptfe-blade-type-stirrer", "SS PTFE Blade Type Stirrer"),
-      p(presets.stirrer, "ss-ptfe-pbt-blade-type-stirrer", "SS PTFE PBT Blade Type Stirrer"),
-      p(presets.stirrer, "ss-ptfe-pbt-blade-stirrer", "SS PTFE PBT Blade Stirrer"),
+      p(presets.stirrer, "ss-ptfe-pbt-blade-stirrer", "SS PTFE PBT Blade Type Stirrer"),
       p(presets.stirrer, "ss-ptfe-anchor-and-pbt-blade-stirrer", "SS PTFE Anchor and PBT Blade Stirrer"),
-      p(presets.stirrer, "ss-ptfe-pbt-and-anchor-type-stirrer", "SS PTFE PBT and Anchor Type Stirrer"),
       p(presets.stirrer, "laboratory-stirrer", "Laboratory Stirrer"),
     ],
   },
+
   {
     slug: "food-product-kettles",
     name: "Food Product Kettles",
     short: "Steam jacketed",
     description:
       "Steam jacketed kettles for food processing — durable stainless steel construction with consistent heating.",
-    image: heat,
+    image: getCategoryImage("food-product-kettles"),
     products: [
       p(presets.food, "steam-jacketed-kettles-20-litre", "Steam Jacketed Kettle 20 Litre"),
     ],
@@ -784,3 +1244,24 @@ export const findProduct = (categorySlug: string, productSlug: string) => {
   if (!product) return null;
   return { category: cat, product };
 };
+
+// ---------------------------------------------------------------------------
+// Full image filename reference list
+// ---------------------------------------------------------------------------
+// Run `console.log(PRODUCT_IMAGE_LIST)` to see every file you need to provide.
+// Place all files in: /public/assets/products/
+//
+// Category covers  → category-{slug}.jpg
+// Product images   → {product-slug}.jpg
+// Fallback image   → placeholder.jpg
+// ---------------------------------------------------------------------------
+export const PRODUCT_IMAGE_LIST: string[] = [
+  // Placeholder (required fallback)
+  "placeholder.jpg",
+
+  // ── Category cover images ──────────────────────────────────────────────
+  ...categories.map((c) => `category-${c.slug}.jpg`),
+
+  // ── Product images (one per product) ──────────────────────────────────
+  ...allProducts.map((pr) => `${pr.slug}.jpg`),
+];
