@@ -147,20 +147,24 @@ const ProductCategory = () => {
     }
   }, [categories, categoriesLoading]);
 
+  const cat = categories.find((c: any) => c.slug === slug);
+
   const fetchCategoryProducts = async () => {
-    const { data, error } = await supabase.from("products").select("*").eq("category", slug).order("created_at", { ascending: false });
+    const filterValues = [slug, cat?.name].filter(Boolean) as string[];
+    const query = supabase.from("products").select("*").order("created_at", { ascending: false });
+    const { data, error } = filterValues.length > 1
+      ? await query.in("category", filterValues)
+      : await query.eq("category", slug);
     if (error) throw error;
     return data ?? [];
   };
 
   const { data: products = [], isLoading: productsLoading } = useQuery({
-    queryKey: ["categoryProducts", slug],
+    queryKey: ["categoryProducts", slug, cat?.name],
     queryFn: fetchCategoryProducts,
     enabled: !!slug,
     retry: false,
   });
-
-  const cat = categories.find((c: any) => c.slug === slug);
 
   useSEO(cat ? `${cat.name} | Gujarat Scientific And Polymer` : "Category not found", cat?.description ?? "");
 
