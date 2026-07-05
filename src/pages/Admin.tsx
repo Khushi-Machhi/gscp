@@ -219,21 +219,38 @@ const Admin = () => {
       const uploadedUrls: string[] = [];
       for (const file of newProductFiles) {
         const filePath = `products/${Date.now()}_${file.name}`;
-        const { error } = await supabase.storage.from(storageBucket).upload(filePath, file, {
+        // perform upload and capture response for diagnostics
+        const res = await supabase.storage.from(storageBucket).upload(filePath, file, {
           cacheControl: "3600",
-          upsert: false,
+          upsert: true,
         });
-        if (error) throw error;
-        const { data: urlData } = supabase.storage.from(storageBucket).getPublicUrl(filePath);
+        if (res.error) {
+          // surface detailed error information
+          console.error("Upload error for", file.name, res.error);
+          throw res.error;
+        }
+        // get public URL
+        const { data: urlData, error: urlError } = supabase.storage.from(storageBucket).getPublicUrl(filePath);
+        if (urlError) {
+          console.error("getPublicUrl error for", filePath, urlError);
+        }
         const publicUrl = urlData?.publicUrl ?? null;
-        if (publicUrl) uploadedUrls.push(publicUrl);
+        if (publicUrl) {
+          uploadedUrls.push(publicUrl);
+          console.info("Uploaded", file.name, "->", publicUrl);
+        } else {
+          console.warn("Uploaded but no publicUrl returned for", filePath, res);
+        }
       }
       setNewProductImageUrls((cur) => [...cur, ...uploadedUrls]);
       // clear staged files
       setNewProductFiles([]);
       toast({ title: "Upload successful", description: `${uploadedUrls.length} image(s) uploaded.` });
+      return uploadedUrls;
     } catch (err: any) {
+      console.error("handleUploadImages error:", err);
       toast({ title: "Upload failed", description: formatError(err) });
+      return [];
     } finally {
       setImageUploading(false);
     }
@@ -384,15 +401,21 @@ const Admin = () => {
           <div className="rounded-3xl border border-border bg-card p-8 shadow-soft">
             <h3 className="text-xl font-semibold">Products</h3>
             <form
-              onSubmit={(e) => {
+              onSubmit={async (e) => {
                 e.preventDefault();
                 const slug = newProductSlug.trim() || slugify(newProductName);
+                // if files staged but not uploaded yet, upload them first
+                let finalImageUrl = newProductImageUrls[0] ?? null;
+                if ((newProductFiles || []).length > 0) {
+                  const uploaded = await handleUploadImages();
+                  if (uploaded && uploaded.length > 0) finalImageUrl = uploaded[0];
+                }
                 createProductMutation.mutate({
                   name: newProductName.trim(),
                   slug,
                   category: newProductCategory || null,
                   description: newProductDescription || null,
-                  image_url: newProductImageUrls[0] ?? null,
+                  image_url: finalImageUrl,
                 });
               }}
               className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-4"
