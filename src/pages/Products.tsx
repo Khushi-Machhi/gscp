@@ -31,7 +31,7 @@ const ProductsPage = () => {
   });
 
   const fetchCategories = async () => {
-    const { data, error } = await supabase.from("categories").select("id,name,slug,created_at").order("created_at", { ascending: false });
+    const { data, error } = await supabase.from("categories").select("id,name,slug,created_at,img_url,short,description").order("created_at", { ascending: false });
     if (error) throw error;
     return data ?? [];
   };
@@ -96,7 +96,7 @@ const ProductsPage = () => {
           {tab === "categories" ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {categories.map((c: any, i: number) => {
-                const image = c.image ?? `/assets/products/category-${c.slug}.jpeg`;
+                const image = c.img_url ?? c.image ?? `/assets/products/category-${c.slug}.jpeg`;
                 const short = c.short ?? "";
                 const description = c.description ?? "";
                 return (

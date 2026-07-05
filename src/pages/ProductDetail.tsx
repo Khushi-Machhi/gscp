@@ -19,7 +19,7 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchCategories = async () => {
-    const { data, error } = await supabase.from("categories").select("id,name,slug,created_at").order("created_at", { ascending: false });
+    const { data, error } = await supabase.from("categories").select("id,name,slug,created_at,img_url,short,description").order("created_at", { ascending: false });
     if (error) throw error;
     return data ?? [];
   };
