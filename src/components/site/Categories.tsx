@@ -16,7 +16,7 @@ const iconMap: Record<string, typeof Wrench> = {
 
 const Categories = () => {
   const fetchCategories = async () => {
-    const { data, error } = await supabase.from("categories").select("id,name,slug,short,description,image").order("created_at", { ascending: false });
+    const { data, error } = await supabase.from("categories").select("id,name,slug,short,description").order("created_at", { ascending: false });
     if (error) throw error;
     return data ?? [];
   };
