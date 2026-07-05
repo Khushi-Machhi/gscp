@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ArrowRight, Beaker, Wrench, Layers, Gauge, Droplets, Cog } from "lucide-react";
-import { categories } from "@/data/catalog";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
 
 const iconMap: Record<string, typeof Wrench> = {
   "bellows-expansion-joints": Wrench,
@@ -14,6 +15,17 @@ const iconMap: Record<string, typeof Wrench> = {
 };
 
 const Categories = () => {
+  const fetchCategories = async () => {
+    const { data, error } = await supabase.from("categories").select("id,name,slug,short,description,image").order("created_at", { ascending: false });
+    if (error) throw error;
+    return data ?? [];
+  };
+
+  const { data: categories = [], isLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+    retry: false,
+  });
   return (
     <section className="py-20 lg:py-24 bg-gradient-soft">
       <div className="container">

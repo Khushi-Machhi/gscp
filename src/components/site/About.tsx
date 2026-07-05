@@ -38,7 +38,7 @@ const About = () => {
             <div className="absolute -bottom-6 right-2 sm:-bottom-8 sm:-right-4 lg:-right-8 bg-card rounded-2xl p-4 sm:p-6 shadow-elegant border border-border max-w-[220px] sm:max-w-[260px] animate-float">
               <div className="text-4xl sm:text-5xl font-display font-bold text-gradient">2016</div>
               <div className="mt-1 text-xs sm:text-sm text-muted-foreground">
-                Established with a vision for industrial excellence in PTFE & polymer products.
+                Established with a vision for industrial excellence and dependable service.
               </div>
             </div>
 
@@ -54,20 +54,19 @@ const About = () => {
               Company Profile
             </span>
             <h2 className="mt-4 font-display font-bold text-4xl lg:text-5xl text-primary leading-tight">
-              A trusted name in <span className="text-gradient">PTFE & Industrial</span> manufacturing
+              A trusted name in <span className="text-gradient">industrial</span> manufacturing
             </h2>
 
             <p className="mt-5 text-muted-foreground leading-relaxed">
-              Specializing in the production of various PTFE Products and related industrial hardware,
+              Specializing in engineered industrial systems and custom assemblies,
               <strong className="text-foreground"> Gujarat Scientific And Polymer</strong> has established itself as
-              a well-known manufacturer and supplier. We offer a wide variety of products including PTFE Bellow,
-              Double Window Sight Glass, PTFE Lined Reducing Flange, Glass Stirring Assembly, Feed Pipe, MS PTFE
-              Elbow Pipe and more.
+              a reliable manufacturing partner. We support process, laboratory and industrial customers with rugged
+              solutions, quality control and responsive service.
             </p>
 
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Established in 2016, we have been working relentlessly to produce high-quality products at competitive
-              prices, serving automotive, chemical processing, food processing, medical and many other industries.
+              Established in 2016, we continue to deliver high-quality manufacturing and technical support at
+              competitive pricing, serving automotive, chemical processing, food processing, medical and many other industries.
             </p>
 
             <ul className="mt-7 space-y-3">

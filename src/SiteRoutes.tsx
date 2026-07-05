@@ -31,6 +31,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "@/components/site/Layout";
 import Home from "@/pages/Home";
 import Company from "@/pages/Company";
+import Admin from "@/pages/Admin";
 import ProductsPage from "@/pages/Products";
 import ProductCategory from "@/pages/ProductCategory";
 import ProductDetail from "@/pages/ProductDetail";
@@ -43,6 +44,7 @@ const SiteRoutes = () => (
     <Route element={<Layout />}>
       <Route path="/" element={<Home />} />
       <Route path="/company" element={<Company />} />
+      <Route path="/admin" element={<Admin />} />
       <Route path="/products" element={<ProductsPage />} />
       <Route path="/products/:slug" element={<ProductCategory />} />
       <Route path="/products/:slug/:productSlug" element={<ProductDetail />} />

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Twitter, ArrowUp } from "lucide-react";
 import logo from "@/assets/gscp-white-logo.png";
-import { categories } from "@/data/catalog";
 
 const Footer = () => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
@@ -40,32 +39,17 @@ const Footer = () => {
           </div>
 
           {/* Quick links */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-4">
             <div className="font-display font-semibold text-base mb-4">Company</div>
             <ul className="space-y-2.5 text-sm text-primary-foreground/70">
               {[
                 ["/", "Home"],
                 ["/company", "Company Profile"],
-                ["/products", "Our Products"],
                 ["/why-us", "Why Us"],
                 ["/contact", "Contact Us"],
               ].map(([to, l]) => (
                 <li key={to}>
                   <Link to={to} className="hover:text-secondary transition-quick">{l}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Products */}
-          <div className="lg:col-span-3">
-            <div className="font-display font-semibold text-base mb-4">Products</div>
-            <ul className="space-y-2.5 text-sm text-primary-foreground/70">
-              {categories.slice(0, 6).map((c) => (
-                <li key={c.slug}>
-                  <Link to={`/products/${c.slug}`} className="hover:text-secondary transition-quick">
-                    {c.name}
-                  </Link>
                 </li>
               ))}
             </ul>

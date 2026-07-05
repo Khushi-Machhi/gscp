@@ -107,20 +107,64 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, Send, CheckCircle2 } from "lucide-react";
 import PageHeader from "@/components/site/PageHeader";
-import { findCategory, categories } from "@/data/catalog";
+import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
 import { useSEO } from "@/hooks/use-seo";
 import { Button } from "@/components/ui/button";
 import NotFound from "@/pages/NotFound";
 
 const ProductCategory = () => {
   const { slug = "" } = useParams();
-  const cat = findCategory(slug);
+  const fetchCategories = async () => {
+    const { data, error } = await supabase.from("categories").select("id,name,slug,short,description,image").order("created_at", { ascending: false });
+    if (error) throw error;
+    return data ?? [];
+  };
 
-  useSEO(
-    cat ? `${cat.name} | Gujarat Scientific And Polymer` : "Category not found",
-    cat?.description ?? "",
-  );
+  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+    retry: false,
+  });
 
+  useEffect(() => {
+    if (!categoriesLoading && (!categories || categories.length === 0)) {
+      (async () => {
+        try {
+          const { data, error } = await supabase.from("categories").select("id").limit(1);
+          if (error) throw error;
+          // if no rows, warn
+          if (!data || data.length === 0) {
+            // eslint-disable-next-line no-console
+            console.warn("Supabase categories table empty");
+          }
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.error("Categories fetch error:", err);
+        }
+      })();
+    }
+  }, [categories, categoriesLoading]);
+
+  const fetchCategoryProducts = async () => {
+    const { data, error } = await supabase.from("products").select("*").eq("category", slug).order("created_at", { ascending: false });
+    if (error) throw error;
+    return data ?? [];
+  };
+
+  const { data: products = [], isLoading: productsLoading } = useQuery({
+    queryKey: ["categoryProducts", slug],
+    queryFn: fetchCategoryProducts,
+    enabled: !!slug,
+    retry: false,
+  });
+
+  const cat = categories.find((c: any) => c.slug === slug);
+
+  useSEO(cat ? `${cat.name} | Gujarat Scientific And Polymer` : "Category not found", cat?.description ?? "");
+
+  if (categoriesLoading || productsLoading) return <p className="p-8">Loading...</p>;
   if (!cat) return <NotFound />;
 
   return (
@@ -143,7 +187,7 @@ const ProductCategory = () => {
                   All Categories
                 </div>
                 <ul className="space-y-1">
-                  {categories.map((c) => (
+                  {categories.map((c: any) => (
                     <li key={c.slug}>
                       <Link
                         to={`/products/${c.slug}`}
@@ -172,7 +216,7 @@ const ProductCategory = () => {
             </aside>
 
             <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
-              {cat.products.map((p, i) => (
+              {products.map((p: any, i: number) => (
                 <article
                   key={p.name}
                   className="group bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-hover transition-smooth hover:-translate-y-1.5 animate-fade-up"

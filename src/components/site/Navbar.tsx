@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoColored from "@/assets/gscp-logo.png";
 import logoWhite from "@/assets/gscp-white-logo.png";
-import { categories } from "@/data/catalog";
 
 const navItems = [
   { to: "/", label: "Home" },
+  { to: "/products", label: "Products" },
   { to: "/company", label: "Company" },
-  { to: "/products", label: "Products", hasMenu: false },
   { to: "/why-us", label: "Why Us" },
   { to: "/contact", label: "Contact" },
 ];
@@ -17,8 +16,6 @@ const navItems = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [productsOpen, setProductsOpen] = useState(false);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -30,8 +27,6 @@ const Navbar = () => {
 
   useEffect(() => {
     setOpen(false);
-    setProductsOpen(false);
-    setMobileProductsOpen(false);
   }, [pathname]);
 
   const onHome = pathname === "/";
@@ -57,71 +52,24 @@ const Navbar = () => {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-1">
-          {navItems.map((item) =>
-            item.hasMenu ? (
-              <div
-                key={item.to}
-                className="relative"
-                onMouseEnter={() => setProductsOpen(true)}
-                onMouseLeave={() => setProductsOpen(false)}
-              >
-                <NavLink
-                  to={item.to}
-                  className={({ isActive }) =>
-                    `px-4 py-2 text-sm font-medium transition-quick flex items-center gap-1 ${
-                      transparent
-                        ? "text-primary-foreground/90 hover:text-primary-foreground"
-                        : isActive
-                          ? "text-primary"
-                          : "text-foreground/80 hover:text-primary"
-                    }`
-                  }
-                >
-                  {item.label}
-                  <ChevronDown className={`w-3.5 h-3.5 transition-smooth ${productsOpen ? "rotate-180" : ""}`} />
-                </NavLink>
-                {productsOpen && (
-                  <div className="absolute top-full left-0 pt-2 w-72 animate-fade-in">
-                    <div className="bg-card rounded-xl shadow-elegant border border-border p-2 grid">
-                      <Link
-                        to="/products"
-                        className="text-sm px-3 py-2 rounded-lg hover:bg-muted font-semibold text-primary"
-                      >
-                        All Products →
-                      </Link>
-                      <div className="h-px bg-border my-1" />
-                      {categories.map((c) => (
-                        <Link
-                          key={c.slug}
-                          to={`/products/${c.slug}`}
-                          className="text-sm px-3 py-2 rounded-lg hover:bg-muted text-foreground/80 hover:text-primary transition-quick"
-                        >
-                          {c.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.to === "/"}
-                className={({ isActive }) =>
-                  `px-4 py-2 text-sm font-medium transition-quick ${
-                    transparent
-                      ? "text-primary-foreground/90 hover:text-primary-foreground"
-                      : isActive
-                        ? "text-primary"
-                        : "text-foreground/80 hover:text-primary"
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ),
-          )}
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.to === "/"}
+              className={({ isActive }) =>
+                `px-4 py-2 text-sm font-medium transition-quick ${
+                  transparent
+                    ? "text-primary-foreground/90 hover:text-primary-foreground"
+                    : isActive
+                      ? "text-primary"
+                      : "text-foreground/80 hover:text-primary"
+                }`
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-3">
@@ -151,51 +99,20 @@ const Navbar = () => {
       {open && (
         <div className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border animate-fade-in max-h-[calc(100vh-5rem)] overflow-y-auto">
           <div className="container py-4 flex flex-col gap-1">
-            {navItems.map((item) =>
-              item.hasMenu ? (
-                <div key={item.to}>
-                  <button
-                    onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
-                    className="w-full flex items-center justify-between px-3 py-3 text-base font-medium text-foreground/80 hover:bg-muted rounded-lg"
-                  >
-                    {item.label}
-                    <ChevronDown className={`w-4 h-4 transition-smooth ${mobileProductsOpen ? "rotate-180" : ""}`} />
-                  </button>
-                  {mobileProductsOpen && (
-                    <div className="ml-3 pl-3 border-l-2 border-border space-y-1 mt-1">
-                      <Link
-                        to="/products"
-                        className="block px-3 py-2 text-sm font-semibold text-primary hover:bg-muted rounded-lg"
-                      >
-                        All Products
-                      </Link>
-                      {categories.map((c) => (
-                        <Link
-                          key={c.slug}
-                          to={`/products/${c.slug}`}
-                          className="block px-3 py-2 text-sm text-foreground/80 hover:bg-muted hover:text-primary rounded-lg"
-                        >
-                          {c.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.to === "/"}
-                  className={({ isActive }) =>
-                    `px-3 py-3 text-base font-medium rounded-lg ${
-                      isActive ? "bg-muted text-primary" : "text-foreground/80 hover:bg-muted"
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ),
-            )}
+            {navItems.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === "/"}
+                className={({ isActive }) =>
+                  `px-3 py-3 text-base font-medium rounded-lg ${
+                    isActive ? "bg-muted text-primary" : "text-foreground/80 hover:bg-muted"
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
             <Button asChild variant="hero" className="mt-2">
               <Link to="/contact">Get a Quote</Link>
             </Button>

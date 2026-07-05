@@ -103,11 +103,21 @@ import { Link } from "react-router-dom";
 import { Send, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { allProducts } from "@/data/catalog";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
 
 const ProductsShowcase = () => {
   const [tab, setTab] = useState<"new" | "featured">("new");
-  const list = tab === "new" ? allProducts.slice(0, 8) : allProducts.slice(8, 16);
+
+  const fetchProducts = async () => {
+    const { data, error } = await supabase.from("products").select("name,slug,category,image,img,tag").order("created_at", { ascending: false });
+    if (error) throw error;
+    return data ?? [];
+  };
+
+  const { data: products = [], isLoading } = useQuery({ queryKey: ["products"], queryFn: fetchProducts, retry: false });
+
+  const list = (products || []).slice(0, 16);
 
   return (
     <section id="products" className="py-20 lg:py-24 bg-gradient-soft relative overflow-hidden">

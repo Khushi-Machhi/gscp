@@ -488,7 +488,7 @@ const p = (
   faqs: makeFaqs(name),
 });
 
-export const categories: Category[] = [
+const legacyCategories: Category[] = [
 
   // ─── BOROSILICATE GLASS REACTOR ASSEMBLIES ────────────────────────────────
 
@@ -872,6 +872,49 @@ export const categories: Category[] = [
     image: getCategoryImage("ms-support-structures"),
     products: [
       // Removed product: MS Powder-Coated Structure Part
+    ],
+  },
+];
+
+export const categories: Category[] = [
+  {
+    slug: "ptfe-products",
+    name: "PTFE Products",
+    short: "Rods • Tubes • Bushes • Custom Machined Parts",
+    description:
+      "Virgin and filled PTFE components, machined parts, bellows and stirrers designed for chemical resistance and long-life service.",
+    image: getCategoryImage("ptfe-products"),
+    products: [
+      ...(legacyCategories.find((category) => category.slug === "ptfe-moulded-machined-products")?.products ?? []),
+      ...(legacyCategories.find((category) => category.slug === "ptfe-expansion-joint-bellows")?.products ?? []),
+      ...(legacyCategories.find((category) => category.slug === "ptfe-industrial-stirrers")?.products ?? []),
+    ],
+  },
+  {
+    slug: "ms-ptfe-lined-products",
+    name: "MS PTFE Lined Products",
+    short: "Valves • Flanges • Pipes • Fittings",
+    description:
+      "MS PTFE-lined valves, flanges, pipes, fittings and accessories for corrosion-resistant industrial piping systems.",
+    image: getCategoryImage("ms-ptfe-lined-products"),
+    products: [
+      ...(legacyCategories.find((category) => category.slug === "ptfe-lined-valves")?.products ?? []),
+      ...(legacyCategories.find((category) => category.slug === "ptfe-lined-pipe-fittings")?.products ?? []),
+      ...(legacyCategories.find((category) => category.slug === "ms-ptfe-flanges")?.products ?? []),
+      ...(legacyCategories.find((category) => category.slug === "industrial-sight-glass")?.products ?? []),
+      ...(legacyCategories.find((category) => category.slug === "ptfe-lined-funnels")?.products ?? []),
+    ],
+  },
+  {
+    slug: "glass-products",
+    name: "Glass Products",
+    short: "Reactors • Heat Exchangers • Condensers",
+    description:
+      "Borosilicate glass reactors, distillation assemblies, condensers and heat exchangers for chemical and pharmaceutical processing.",
+    image: getCategoryImage("glass-products"),
+    products: [
+      ...(legacyCategories.find((category) => category.slug === "glass-reactor-assemblies")?.products ?? []),
+      ...(legacyCategories.find((category) => category.slug === "glass-heat-exchangers-condensers")?.products ?? []),
     ],
   },
 ];

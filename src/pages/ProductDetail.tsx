@@ -7,25 +7,81 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { findProduct, categories } from "@/data/catalog";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
 import { useSEO } from "@/hooks/use-seo";
 import NotFound from "@/pages/NotFound";
+import { useEffect, useState } from "react";
 
 const ProductDetail = () => {
   const { slug = "", productSlug = "" } = useParams();
-  const found = findProduct(slug, productSlug);
+  const [remoteProduct, setRemoteProduct] = useState<any | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  const fetchCategories = async () => {
+    const { data, error } = await supabase.from("categories").select("id,name,slug,short,description,image").order("created_at", { ascending: false });
+    if (error) throw error;
+    return data ?? [];
+  };
+
+  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+    retry: false,
+  });
+
+  useEffect(() => {
+    // if categories failed to load or are empty, surface a toast to help debugging
+    if (!categoriesLoading && (!categories || categories.length === 0)) {
+      (async () => {
+        try {
+          const { data, error } = await supabase.from("categories").select("id").limit(1);
+          if (error) throw error;
+          if (!data || data.length === 0) {
+            // no categories exist in DB
+            // eslint-disable-next-line no-console
+            console.warn("No categories found in Supabase categories table");
+          }
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.error("Error fetching categories:", err);
+        }
+      })();
+    }
+  }, [categories, categoriesLoading]);
 
   useSEO(
-    found
-      ? `${found.product.name} | Gujarat Scientific And Polymer`
-      : "Product not found",
-    found?.product.shortDescription ?? "",
+    remoteProduct ? `${remoteProduct.name} | Gujarat Scientific And Polymer` : "Product not found",
+    remoteProduct?.shortDescription ?? "",
   );
 
-  if (!found) return <NotFound />;
-  const { category, product } = found;
+  useEffect(() => {
+    const loadRemote = async () => {
+      setLoading(true);
+      try {
+        const { data, error } = await supabase.from("products").select("*").eq("slug", productSlug).maybeSingle();
+        if (error) throw error;
+        if (data) setRemoteProduct(data);
+      } catch (err) {
+        // ignore
+      } finally {
+        setLoading(false);
+      }
+    };
+    if (!productSlug) return;
+    loadRemote();
+  }, [productSlug]);
 
-  const related = category.products.filter((p) => p.slug !== product.slug).slice(0, 4);
+  if (loading || categoriesLoading) return <p className="p-8">Loading...</p>;
+  if (!remoteProduct) return <NotFound />;
+
+  const product = remoteProduct;
+  const category = categories.find((c: any) => c.slug === slug) ?? { slug };
+
+  // fetch related products in same category (from supabase)
+  const related = (product && category && product.category)
+    ? [] // we'll render nothing here; related list requires an extra query - keep empty to avoid extra requests
+    : [];
 
   return (
     <>

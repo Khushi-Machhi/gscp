@@ -5,19 +5,19 @@ const testimonials = [
     name: "Procurement Head",
     role: "Chemical Processing Industry",
     quote:
-      "Outstanding quality on PTFE bellows and lined flanges. Their team responds quickly and the products consistently meet our spec sheets.",
+      "Reliable engineering support and fast turnaround. Their team helps us keep operations moving with minimal downtime.",
   },
   {
     name: "Plant Manager",
     role: "Pharmaceutical Manufacturing",
     quote:
-      "The glass jacketed reactors and stirring assemblies have proven extremely reliable. Excellent finish and robust build quality.",
+      "Their systems are robust and the service team is responsive. We trust them for every technical challenge.",
   },
   {
     name: "Operations Lead",
     role: "Food Processing Unit",
     quote:
-      "Great product variety and competitive pricing. The steam jacketed kettles have been performing flawlessly for years.",
+      "Strong delivery performance, clear communication and excellent quality controls across every project.",
   },
 ];
 
@@ -61,7 +61,7 @@ const Testimonials = () => {
           {[
             ["8+", "Years of trust"],
             ["500+", "B2B clients"],
-            ["50+", "Product variants"],
+            ["50+", "Custom solutions"],
             ["100%", "Quality focus"],
           ].map(([n, l]) => (
             <div key={l} className="text-center">
