@@ -220,23 +220,26 @@ const ProductCategory = () => {
             </aside>
 
             <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
-              {products.map((p: any, i: number) => (
-                <article
-                  key={p.name}
-                  className="group bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-hover transition-smooth hover:-translate-y-1.5 animate-fade-up"
-                  style={{ animationDelay: `${i * 60}ms` }}
-                >
-                   <div className="block aspect-square overflow-hidden bg-gradient-to-br from-muted to-background">
-                     <img src={p.img} alt={p.name} loading="lazy" className="w-full h-full object-cover transition-smooth" />
-                   </div>
-                   <div className="p-5">
-                     <span className="text-[10px] font-bold tracking-wider uppercase text-secondary">{p.tag}</span>
-                     <h3 className="mt-1 font-display font-semibold text-base text-primary leading-snug">
-                       {p.name}
-                     </h3>
-                   </div>
-                </article>
-              ))}
+              {products.map((p: any, i: number) => {
+                const img = p.image_url ?? p.img ?? "/assets/products/placeholder.jpeg";
+                return (
+                  <article
+                    key={p.name}
+                    className="group bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-hover transition-smooth hover:-translate-y-1.5 animate-fade-up"
+                    style={{ animationDelay: `${i * 60}ms` }}
+                  >
+                    <div className="block aspect-square overflow-hidden bg-gradient-to-br from-muted to-background">
+                      <img src={img} alt={p.name} loading="lazy" className="w-full h-full object-cover transition-smooth" />
+                    </div>
+                    <div className="p-5">
+                      <span className="text-[10px] font-bold tracking-wider uppercase text-secondary">{p.tag}</span>
+                      <h3 className="mt-1 font-display font-semibold text-base text-primary leading-snug">
+                        {p.name}
+                      </h3>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
