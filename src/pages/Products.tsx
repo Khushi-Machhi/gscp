@@ -139,31 +139,14 @@ const ProductsPage = () => {
                     className="group bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-hover transition-smooth hover:-translate-y-1.5 animate-fade-up"
                     style={{ animationDelay: `${(i % 12) * 50}ms` }}
                   >
-                    <Link to={`/products/${categorySlug}/${p.slug}`} className="block aspect-square overflow-hidden bg-gradient-to-br from-muted to-background">
-                      <img src={img} alt={p.name} loading="lazy" className="w-full h-full object-cover transition-smooth group-hover:scale-110" />
-                    </Link>
+                    <div className="block aspect-square overflow-hidden bg-gradient-to-br from-muted to-background">
+                      <img src={img} alt={p.name} loading="lazy" className="w-full h-full object-cover transition-smooth" />
+                    </div>
                     <div className="p-5">
                       <span className="text-[10px] font-bold tracking-wider uppercase text-secondary">{p.tag ?? ""}</span>
                       <h3 className="mt-1 font-display font-semibold text-base text-primary leading-snug min-h-[3rem]">
-                        <Link to={`/products/${categorySlug}/${p.slug}`} className="hover:text-secondary transition-quick">
-                          {p.name}
-                        </Link>
+                        {p.name}
                       </h3>
-                      <div className="mt-3 flex items-center justify-between gap-2">
-                        <Link
-                          to={`/products/${categorySlug}/${p.slug}`}
-                          className="text-sm font-semibold text-secondary hover:text-primary transition-quick"
-                        >
-                          View details →
-                        </Link>
-                        <Link
-                          to="/contact"
-                          aria-label="Send inquiry"
-                          className="text-secondary hover:text-primary transition-quick"
-                        >
-                          <Send className="w-4 h-4" />
-                        </Link>
-                      </div>
                     </div>
                   </article>
                 );

@@ -222,34 +222,15 @@ const ProductCategory = () => {
                   className="group bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-hover transition-smooth hover:-translate-y-1.5 animate-fade-up"
                   style={{ animationDelay: `${i * 60}ms` }}
                 >
-                  <Link to={`/products/${cat.slug}/${p.slug}`} className="block aspect-square overflow-hidden bg-gradient-to-br from-muted to-background">
-                    <img src={p.img} alt={p.name} loading="lazy" className="w-full h-full object-cover transition-smooth group-hover:scale-110" />
-                  </Link>
-                  <div className="p-5">
-                    <span className="text-[10px] font-bold tracking-wider uppercase text-secondary">{p.tag}</span>
-                    <h3 className="mt-1 font-display font-semibold text-base text-primary leading-snug">
-                      <Link to={`/products/${cat.slug}/${p.slug}`} className="hover:text-secondary transition-quick">
-                        {p.name}
-                      </Link>
-                    </h3>
-                    <ul className="mt-3 space-y-1">
-                      {["Industry-grade material", "Custom sizes available", "Quality tested"].map((f) => (
-                        <li key={f} className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-secondary" /> {f}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 flex gap-2">
-                      <Button asChild variant="hero" size="sm" className="flex-1">
-                        <Link to={`/products/${cat.slug}/${p.slug}`}>View Details</Link>
-                      </Button>
-                      <Button asChild variant="outline" size="sm">
-                        <Link to="/contact" aria-label="Send inquiry">
-                          <Send className="w-3.5 h-3.5" />
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
+                   <div className="block aspect-square overflow-hidden bg-gradient-to-br from-muted to-background">
+                     <img src={p.img} alt={p.name} loading="lazy" className="w-full h-full object-cover transition-smooth" />
+                   </div>
+                   <div className="p-5">
+                     <span className="text-[10px] font-bold tracking-wider uppercase text-secondary">{p.tag}</span>
+                     <h3 className="mt-1 font-display font-semibold text-base text-primary leading-snug">
+                       {p.name}
+                     </h3>
+                   </div>
                 </article>
               ))}
             </div>

@@ -164,40 +164,23 @@ const ProductsShowcase = () => {
               className="group bg-card rounded-2xl overflow-hidden border border-border shadow-soft hover:shadow-hover transition-smooth hover:-translate-y-1.5 animate-fade-up"
               style={{ animationDelay: `${i * 60}ms` }}
             >
-              <Link to={`/products/${p.categorySlug}/${p.slug}`} className="relative block aspect-square bg-gradient-to-br from-muted to-background overflow-hidden">
+              <div className="relative block aspect-square bg-gradient-to-br from-muted to-background overflow-hidden">
                 <img
                   src={p.img}
                   alt={p.name}
                   loading="lazy"
                   width={800}
                   height={800}
-                  className="w-full h-full object-cover transition-smooth group-hover:scale-110"
+                  className="w-full h-full object-cover transition-smooth"
                 />
                 <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-background/85 backdrop-blur text-[10px] font-bold tracking-wider uppercase text-primary">
                   {p.tag}
                 </span>
-              </Link>
+              </div>
               <div className="p-5">
                 <h3 className="font-display font-semibold text-base text-primary leading-snug min-h-[3rem]">
-                  <Link to={`/products/${p.categorySlug}/${p.slug}`} className="hover:text-secondary transition-quick">
-                    {p.name}
-                  </Link>
+                  {p.name}
                 </h3>
-                <div className="mt-4 flex items-center justify-between gap-2">
-                  <Link
-                    to={`/products/${p.categorySlug}/${p.slug}`}
-                    className="text-sm font-semibold text-secondary hover:text-primary transition-quick"
-                  >
-                    View details →
-                  </Link>
-                  <Link
-                    to="/contact"
-                    aria-label="Send inquiry"
-                    className="text-secondary hover:text-primary transition-quick"
-                  >
-                    <Send className="w-4 h-4" />
-                  </Link>
-                </div>
               </div>
             </article>
           ))}
