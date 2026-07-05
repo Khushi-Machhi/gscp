@@ -78,6 +78,13 @@ const ProductDetail = () => {
   const product = remoteProduct;
   const category = categories.find((c: any) => c.slug === slug) ?? { slug };
 
+  // Normalize description fields (DB may store different field names)
+  const shortDescription =
+    product?.shortDescription ?? product?.short_description ?? (product?.description ? (product.description.split("\n")[0] ?? product.description) : "");
+
+  const longDescription =
+    product?.longDescription ?? product?.long_description ?? product?.description ?? "";
+
   // fetch related products in same category (from supabase)
   const related = (product && category && product.category)
     ? [] // we'll render nothing here; related list requires an extra query - keep empty to avoid extra requests
@@ -145,9 +152,11 @@ const ProductDetail = () => {
               </div>
             )}
 
-            <p className="mt-5 text-base text-muted-foreground leading-relaxed">
-              {product.shortDescription}
-            </p>
+            <div className="mt-5 text-base text-muted-foreground leading-relaxed">
+              {shortDescription ? (
+                <div dangerouslySetInnerHTML={{ __html: shortDescription }} />
+              ) : null}
+            </div>
 
             <div className="mt-6 grid grid-cols-2 gap-3">
               <div className="px-4 py-3 rounded-xl bg-muted">
@@ -245,9 +254,11 @@ const ProductDetail = () => {
             <h2 className="mt-2 font-display font-bold text-2xl sm:text-3xl text-primary">
               About {product.name}
             </h2>
-            <p className="mt-5 text-foreground/80 leading-relaxed">
-              {product.longDescription}
-            </p>
+            <div className="mt-5 text-foreground/80 leading-relaxed">
+              {longDescription ? (
+                <div dangerouslySetInnerHTML={{ __html: longDescription }} />
+              ) : null}
+            </div>
 
             <div className="mt-8 space-y-5">
               {product.highlights.map((h) => (

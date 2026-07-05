@@ -453,12 +453,61 @@ const Admin = () => {
                 })()}
               </select>
               <div className="col-span-1 sm:col-span-4">
+                <div className="mb-2 flex gap-2">
+                  <button
+                    type="button"
+                    className="rounded px-2 py-1 bg-muted/60"
+                    onClick={() => document.execCommand("bold")}
+                  >
+                    Bold
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded px-2 py-1 bg-muted/60"
+                    onClick={() => document.execCommand("italic")}
+                  >
+                    Italic
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded px-2 py-1 bg-muted/60"
+                    onClick={() => {
+                      const url = prompt("Enter URL");
+                      if (url) document.execCommand("createLink", false, url);
+                    }}
+                  >
+                    Link
+                  </button>
+                  <button
+                    type="button"
+                    className="rounded px-2 py-1 bg-muted/60"
+                    onClick={() => {
+                      setNewProductDescription("");
+                      const el = document.getElementById("prod-desc-editor");
+                      if (el) el.innerHTML = "";
+                    }}
+                  >
+                    Clear
+                  </button>
+                </div>
+
+                {/* Hidden textarea for tests and accessibility; kept in sync with editor HTML */}
                 <textarea
-                  className="input p-2 border w-full"
                   placeholder="Description"
                   value={newProductDescription}
                   onChange={(e) => setNewProductDescription(e.target.value)}
+                  style={{ display: "none" }}
                 />
+
+                <div
+                  id="prod-desc-editor"
+                  contentEditable
+                  suppressContentEditableWarning
+                  className="min-h-[120px] p-3 border rounded input bg-background/50 overflow-auto"
+                  onInput={(e) => setNewProductDescription((e.target as HTMLElement).innerHTML)}
+                  dangerouslySetInnerHTML={{ __html: newProductDescription }}
+                />
+                <div className="text-xs text-muted-foreground mt-1">You can paste HTML here (bold, links, tables, images).</div>
 
                 <div
                   className="mt-2 rounded border-dashed border-2 border-border p-4 text-center"
